@@ -383,7 +383,7 @@ def main():
 
 
     # Negation
-    neg_detected = [remove_negation(sent) for sent in df[io_cfg.sentence_col]]
+    neg_detected = [detect_negation(sent) for sent in df[io_cfg.sentence_col]]
     df["negation"] = neg_detected
 
     # chemin de sortie
