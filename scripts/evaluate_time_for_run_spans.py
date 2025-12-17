@@ -1,23 +1,12 @@
-"""
-run_spans.py
-
-Script pour :
-- charger les données (phrases)
-- appeler un modèle local (ou distant, ex : epfl-llm/meditron-7b, Qwen-3-32B, etc.)
-- produire un tableau avec les spans prédits
-
-Toute la configuration (modèle, hyperparamètres, chemins) est externalisée
-dans un fichier JSON passé en argument --config.
-"""
-
 import os
 import json
 import argparse
 from dataclasses import dataclass, asdict
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Tuple
 
 import pandas as pd
 import re
+import time
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -67,7 +56,6 @@ class GlobalConfig:
 # =========================
 
 def _dict_to_dataclass(dc_cls, data: Dict[str, Any]):
-    # permet de gérer les valeurs manquantes ou en trop
     field_names = {f.name for f in dc_cls.__dataclass_fields__.values()}
     filtered = {k: v for k, v in data.items() if k in field_names}
     return dc_cls(**filtered)
@@ -84,7 +72,6 @@ def load_config_from_json(path: str) -> GlobalConfig:
 
     def expand(value):
         if isinstance(value, str):
-            # remplace {models_root}, {data_root}, etc.
             return value.format(**paths)
         if isinstance(value, dict):
             return {k: expand(v) for k, v in value.items()}
@@ -94,11 +81,10 @@ def load_config_from_json(path: str) -> GlobalConfig:
 
     model_name = model_raw.get("model_name")
     models_root = paths.get("models_root")
-
     if model_name is not None and models_root:
         if not os.path.isabs(model_name):
             model_raw["model_name"] = os.path.join(models_root, model_name)
-    
+
     gen_raw = expand(raw.get("generation", {}))
     io_raw = expand(raw.get("io", {}))
 
@@ -108,10 +94,8 @@ def load_config_from_json(path: str) -> GlobalConfig:
         if data_root and not os.path.isabs(filename):
             io_raw["data_path"] = os.path.join(data_root, filename)
         else:
-            # filename déjà absolu ou pas de data_root
             io_raw["data_path"] = filename
 
-    # 2) Construire out_dir relatif au project_root si nécessaire
     out_dir = io_raw.get("out_dir", "results")
     project_root = paths.get("project_root")
     if out_dir is not None and project_root and not os.path.isabs(out_dir):
@@ -124,20 +108,14 @@ def load_config_from_json(path: str) -> GlobalConfig:
     return GlobalConfig(model=model_cfg, generation=gen_cfg, io=io_cfg)
 
 
-
 # =========================
 # 3. Chargement des données
 # =========================
 
-def load_dataset(path: str,
-                 sep: str = "\t",
-                 encoding: str = "utf-8") -> pd.DataFrame:
-
+def load_dataset(path: str, sep: str = "\t", encoding: str = "utf-8") -> pd.DataFrame:
     if not os.path.exists(path):
         raise FileNotFoundError(f"Fichier introuvable : {path}")
-
-    df = pd.read_csv(path, sep=sep, encoding=encoding)
-    return df
+    return pd.read_csv(path, sep=sep, encoding=encoding)
 
 
 # =========================
@@ -189,7 +167,7 @@ SENTENCE: She has subtle dysmorphia characterized as hypotelorism and tapering o
 ==========
 Span: subtle dysmorphia, hypotelorism, tapering of fingers
 
-SENTENCE: Lysosomal enzymes in cultured skin fibroblasts such as beta-galactosidase or total beta-hexosaminidase were within normal limits.
+SENTENCE: Lysosomal enzymes in cultured skin fibroblasts such as beta-galactactosidase or total beta-hexosaminidase were within normal limits.
 ==========
 Span: None
 
@@ -203,9 +181,7 @@ Span: atrophied thalami, abnormal water regulation
 """
 
     start = f"SENTENCE: {sentence}\n==========\nSpan: "
-
-    full_prompt = f"{persona}\n\n{instruction}\n\n{examples}\n{start}"
-    return full_prompt
+    return f"{persona}\n\n{instruction}\n\n{examples}\n{start}"
 
 
 # =========================
@@ -213,11 +189,6 @@ Span: atrophied thalami, abnormal water regulation
 # =========================
 
 def load_model(model_cfg: ModelConfig):
-    """
-    Charge le tokenizer et le modèle (type causal LM) en local ou distant.
-    Compatible avec Meditron, Qwen, etc.
-    """
-
     dtype_map = {
         "float16": torch.float16,
         "bfloat16": torch.bfloat16,
@@ -232,7 +203,6 @@ def load_model(model_cfg: ModelConfig):
         trust_remote_code=model_cfg.trust_remote_code,
     )
 
-    # Certains modèles (LLaMA-like, Qwen, etc.) n'ont pas de pad_token
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -249,7 +219,7 @@ def load_model(model_cfg: ModelConfig):
 
 
 # =========================
-# 6. Fonction d'appel au modèle
+# 6. Fonction d'appel au modèle + TIMING
 # =========================
 
 def generate_span_for_sentence(
@@ -257,8 +227,7 @@ def generate_span_for_sentence(
     tokenizer,
     model,
     gen_cfg: GenerationConfig,
-) -> str:
-
+) -> Tuple[str, float]:
     prompt = build_prompt(sentence)
 
     inputs = tokenizer(
@@ -278,23 +247,29 @@ def generate_span_for_sentence(
         pad_token_id=tokenizer.pad_token_id,
     )
 
+    # --- timing précis (CUDA async) ---
+    if torch.cuda.is_available() and str(model.device).startswith("cuda"):
+        torch.cuda.synchronize()
+
+    t0 = time.perf_counter()
+
     with torch.no_grad():
-        output_ids = model.generate(
-            **inputs,
-            **gen_kwargs,
-        )
+        output_ids = model.generate(**inputs, **gen_kwargs)
+
+    if torch.cuda.is_available() and str(model.device).startswith("cuda"):
+        torch.cuda.synchronize()
+
+    elapsed_s = time.perf_counter() - t0
 
     full_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
-    # Extraction naïve de la partie après "Span:"
     if "Span:" in full_text:
         span_text = full_text.split("Span:")[-1].strip()
     else:
-        # fallback : tout le texte généré après le prompt
         generated_only = full_text[len(prompt):].strip()
         span_text = generated_only
 
-    return span_text
+    return span_text, elapsed_s
 
 
 # =========================
@@ -303,26 +278,19 @@ def generate_span_for_sentence(
 
 def detect_negation(text):
     if not isinstance(text, str):
-        return text, False  # Return non-string values as is
+        return text, False
 
-    negation_patterns = ['never had', 'unremarkable', 'normal', 'no']  # Add more patterns as needed
-    # exceptions = ['without particularity', 'without significance', 'was normal', 'not found']  # Add patterns that should not be removed at the beginning
-
+    negation_patterns = ['never had', 'unremarkable', 'normal', 'no']
     negation_found = False
 
-    # Iterate over negation patterns and apply removal based on context
     for pattern in negation_patterns:
-        # Create a regular expression pattern with word boundaries around negation words
         pattern_regex = r'\b' + re.escape(pattern) + r'\b'
-
-        # Use re.sub to remove the negation part from the text
         text, count = re.subn(pattern_regex, '', text, flags=re.IGNORECASE)
-
-        # Check if negation pattern was found
         if count > 0:
             negation_found = True
 
-    return negation_found  # Remove leading/trailing whitespaces and return negation flag
+    return negation_found
+
 
 # =========================
 # 8. Main
@@ -330,15 +298,9 @@ def detect_negation(text):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--config",
-        type=str,
-        required=True,
-        help="Chemin du fichier de configuration JSON",
-    )
+    parser.add_argument("--config", type=str, required=True)
     args = parser.parse_args()
 
-    # --- Chargement config ---
     cfg = load_config_from_json(args.config)
     model_cfg = cfg.model
     gen_cfg = cfg.generation
@@ -348,47 +310,54 @@ def main():
     print("Configuration génération :", asdict(gen_cfg))
     print("Configuration IO :", asdict(io_cfg))
 
-    # --- Chargement du modèle ---
     tokenizer, model = load_model(model_cfg)
 
-    # --- Chargement du dataset ---
     df = load_dataset(io_cfg.data_path, sep=io_cfg.sep, encoding=io_cfg.encoding)
 
     if io_cfg.sentence_col not in df.columns:
         raise ValueError(
-            f"Colonne '{io_cfg.sentence_col}' introuvable dans le fichier. "
-            f"Colonnes disponibles : {list(df.columns)}"
+            f"Colonne '{io_cfg.sentence_col}' introuvable. "
+            f"Colonnes dispo : {list(df.columns)}"
         )
 
-    # --- Application du modèle sur chaque phrase ---
+    # suffix basé sur le nom du modèle
+    model_suffix = model_cfg.model_name.split("/")[-1]
+    model_suffix = model_suffix.replace("-", "_").replace(" ", "_").lower()
+
+    pred_col_name = f"{io_cfg.pred_col_prefix}_{model_suffix}"
+    time_col_name = f"latency_s_{model_suffix}"
+
     preds = []
+    times_s = []
+
     for sent in df[io_cfg.sentence_col]:
-        span_pred = generate_span_for_sentence(
+        span_pred, elapsed_s = generate_span_for_sentence(
             sentence=sent,
             tokenizer=tokenizer,
             model=model,
             gen_cfg=gen_cfg,
         )
         preds.append(span_pred)
+        times_s.append(elapsed_s)
 
-    # suffix basé sur le nom du modèle (partie après le slash)
-    model_suffix = model_cfg.model_name.split("/")[-1]
-    model_suffix = model_suffix.replace("-", "_").replace(" ", "_").lower()
-
-    pred_col_name = f"{io_cfg.pred_col_prefix}_{model_suffix}"
     df[pred_col_name] = preds
+    df[time_col_name] = times_s
 
     # Negation
-    neg_detected = [detect_negation(sent) for sent in df[io_cfg.sentence_col]]
-    df["negation"] = neg_detected
+    df["negation"] = [detect_negation(sent) for sent in df[io_cfg.sentence_col]]
 
-    # chemin de sortie
+    # Stats simples
+    s = pd.Series(times_s, dtype="float64")
+    print("\n--- Timing par requête (secondes) ---")
+    print(f"n={len(s)} | mean={s.mean():.4f} | median={s.median():.4f} | p95={s.quantile(0.95):.4f} | max={s.max():.4f}")
+
     os.makedirs(io_cfg.out_dir, exist_ok=True)
     out_path = os.path.join(io_cfg.out_dir, f"spans_{model_suffix}.tsv")
     df.to_csv(out_path, sep=io_cfg.sep, index=False)
 
     print(f"Résultats sauvegardés dans : {out_path}")
     print(f"Hyperparamètres de génération : {asdict(gen_cfg)}")
+
 
 if __name__ == "__main__":
     main()
