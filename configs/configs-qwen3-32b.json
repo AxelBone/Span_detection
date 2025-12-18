@@ -35,5 +35,12 @@
     "base_url": "http://lx181:9502/v1",
     "model": "qwen3-32b",
     "timeout_s": 120.0
+  },
+
+  "runtime": {
+    "batch_size": 100,
+    "log_file": "run.log",
+    "log_level": "INFO",
+    "resume": true
   }
 }
