@@ -1,8 +1,8 @@
 {
   "paths": {
     "project_root": "/home/me/code/phenotype-project",
-    "models_root": "/mnt/big_disk/models",         
-    "data_root": "/mnt/shared_data/chu50_en_v2"       
+    "models_root": "/mnt/big_disk/models",
+    "data_root": "/mnt/shared_data/chu50_en_v2"
   },
 
   "model": {
@@ -12,6 +12,7 @@
     "local_files_only": true,
     "trust_remote_code": false
   },
+
   "generation": {
     "max_new_tokens": 64,
     "temperature": 0.0,
@@ -20,6 +21,7 @@
     "do_sample": false,
     "repetition_penalty": 1.0
   },
+
   "io": {
     "filename": "spans_dataset.tsv",
     "sep": "\t",
@@ -27,5 +29,11 @@
     "sentence_col": "Sentence_en",
     "out_dir": "results",
     "pred_col_prefix": "span_pred"
+  },
+
+  "vllm": {
+    "base_url": "http://lx181:9502/v1",
+    "model": "qwen3-32b",
+    "timeout_s": 120.0
   }
 }
