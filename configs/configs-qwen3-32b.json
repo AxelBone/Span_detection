@@ -1,8 +1,8 @@
 {
   "paths": {
-    "project_root": "/home/me/code/phenotype-project",
-    "models_root": "/mnt/big_disk/models",
-    "data_root": "/mnt/shared_data/chu50_en_v2"
+    "project_root": "/home/prollier/ext/Span_detection/",
+    "models_root": "/home/prollier/models/",
+    "data_root": "/home/prollier/output/for_span_detection_formatted/"
   },
 
   "model": {
@@ -23,8 +23,8 @@
   },
 
   "io": {
-    "filename": "spans_dataset.tsv",
-    "sep": "\t",
+    "filename": "translated_chunked_reports_chu50_span_format.csv",
+    "sep": ",",
     "encoding": "utf-8",
     "sentence_col": "Sentence_en",
     "out_dir": "results",
@@ -43,7 +43,7 @@
     "log_level": "INFO",
     "resume": true
   },
-  
+
   "prompt": {
     "template_path": "prompts/span_prompt.txt",
     "sentence_var": "sentence"
