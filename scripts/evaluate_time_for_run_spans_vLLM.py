@@ -68,12 +68,21 @@ class RuntimeConfig:
 
 
 @dataclass
+class PromptConfig:
+    # chemin du template prompt (fichier texte)
+    template_path: str = "prompts/span_prompt.txt"
+    # nom de la variable utilisée dans le template, ex: {sentence}
+    sentence_var: str = "sentence"
+
+
+@dataclass
 class GlobalConfig:
     model: ModelConfig
     generation: GenerationConfig
     io: IOConfig
     vllm: VLLMConfig
     runtime: RuntimeConfig
+    prompt: PromptConfig
 
 
 # =========================
@@ -107,6 +116,7 @@ def load_config_from_json(path: str) -> GlobalConfig:
     io_raw = expand(raw.get("io", {}))
     vllm_raw = expand(raw.get("vllm", {}))
     runtime_raw = expand(raw.get("runtime", {}))
+    prompt_raw = expand(raw.get("prompt", {}))
 
     # --- résolution chemins IO ---
     filename = io_raw.get("filename")
@@ -132,9 +142,15 @@ def load_config_from_json(path: str) -> GlobalConfig:
     io_cfg = _dict_to_dataclass(IOConfig, io_raw)
     vllm_cfg = _dict_to_dataclass(VLLMConfig, vllm_raw)
     runtime_cfg = _dict_to_dataclass(RuntimeConfig, runtime_raw)
+    prompt_cfg = _dict_to_dataclass(PromptConfig, prompt_raw)
 
     return GlobalConfig(
-        model=model_cfg, generation=gen_cfg, io=io_cfg, vllm=vllm_cfg, runtime=runtime_cfg
+        model=model_cfg,
+        generation=gen_cfg,
+        io=io_cfg,
+        vllm=vllm_cfg,
+        runtime=runtime_cfg,
+        prompt=prompt_cfg,
     )
 
 
@@ -150,11 +166,9 @@ def setup_logging(log_path: str, level: str = "INFO") -> logging.Logger:
 
     os.makedirs(os.path.dirname(log_path) or ".", exist_ok=True)
 
-    # fichier (rotation)
     fh = RotatingFileHandler(log_path, maxBytes=10_000_000, backupCount=5, encoding="utf-8")
     fh.setLevel(logger.level)
 
-    # console
     ch = logging.StreamHandler()
     ch.setLevel(logger.level)
 
@@ -202,70 +216,28 @@ def load_dataset(path: str, sep: str = "\t", encoding: str = "utf-8") -> pd.Data
 
 
 # =========================
-# 5. Prompt + vLLM
+# 5. Prompt externalisé
 # =========================
 
-def build_prompt(sentence: str) -> str:
-    persona = (
-        "You are an experimented clinician with an exhaustive knowledge "
-        "of human phenotypes ontology."
-    )
+def load_prompt_template(path: str) -> str:
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Prompt template introuvable : {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
 
-    instruction = (
-        "Given a sentence, you must identify the spans related to possible "
-        "phenotypes, either explicitly or implicitly.\n"
-        "You should keep in the span all words related to the phenotype that "
-        "should be informative (such as negation or adjective).\n"
-        "You may reformulate the span if needed.\n"
-        "If you don't detect any span or if you don't know, don't try to "
-        "make up an answer, just write 'None'."
-    )
 
-    examples = """
-SENTENCE: Shortly after birth, he developed tachypnea, irritability and spastic movements of the upper limbs, and he was found to have mild hypocalcemia and hypomagnesemia.
-==========
-Span: tachypnea, irritability, spastic movements of the upper limbs, mild hypocalcemia, hypomagnesemia
+def render_prompt(template: str, sentence: str, var_name: str = "sentence") -> str:
+    try:
+        return template.format(**{var_name: sentence})
+    except KeyError as e:
+        raise KeyError(
+            f"Variable manquante dans le template. Attendu: {{{var_name}}}. Erreur: {e}"
+        ) from e
 
-SENTENCE: MR spectroscopy showed a region of increased myoinositol in the left thalamus indicating gliosis with no lactate peak. His TSH has been persistently mildly elevated; however, he is not on thyroxine.
-==========
-Span: increased myoinositol in the left thalamus, gliosis, TSH has been persistently mildly elevated
 
-SENTENCE: On examination, she has a nonexpressive face with subtle dysmorphism and mild positional deformity of the chest wall. His physical examination was significant for hypertelorism, long thin and hyperextensible fingers and hypotonia. Other examinations were within normal limits. Brain MRI showed diffuse white matter T2 hyperintensity.
-==========
-Span: nonexpressive face, subtle dysmorphism, mild positional deformity of the chest wall, hypertelorism, long fingers, thin fingers, hyperextensible fingers, hypotonia, diffuse white matter T2 hyperintensity
-
-SENTENCE: He has developed its first seizures at the age of 9 month and continues to seize daily.
-==========
-Span: seizures, seize daily
-
-SENTENCE: She can only regard faces and smile.
-==========
-Span: None
-
-SENTENCE: She barely can feel pain, has no tears when she cries even though she has normal sweating.
-==========
-Span: barely can feel pain, no tears, normal sweating
-
-SENTENCE: She has subtle dysmorphia characterized as hypotelorism and tapering of fingers.
-==========
-Span: subtle dysmorphia, hypotelorism, tapering of fingers
-
-SENTENCE: Lysosomal enzymes in cultured skin fibroblasts such as beta-galactactosidase or total beta-hexosaminidase were within normal limits.
-==========
-Span: None
-
-SENTENCE: Skeletal survey showed 11 pairs of ribs.
-==========
-Span: 11 pairs of ribs
-
-SENTENCE: It showed atrophied thalami and restricted water diffusion.
-==========
-Span: atrophied thalami, abnormal water regulation
-""".strip()
-
-    start = f"SENTENCE: {sentence}\n==========\nSpan: "
-    return f"{persona}\n\n{instruction}\n\n{examples}\n\n{start}"
-
+# =========================
+# 6. Appel vLLM
+# =========================
 
 def _build_headers(vllm_cfg: VLLMConfig) -> Dict[str, str]:
     headers = {"Content-Type": "application/json"}
@@ -276,11 +248,13 @@ def _build_headers(vllm_cfg: VLLMConfig) -> Dict[str, str]:
 
 def generate_span_for_sentence_vllm(
     sentence: str,
+    prompt_template: str,
+    prompt_var: str,
     vllm_cfg: VLLMConfig,
     gen_cfg: GenerationConfig,
     session: Optional[requests.Session] = None,
 ) -> Tuple[str, float]:
-    prompt = build_prompt(sentence)
+    prompt = render_prompt(prompt_template, sentence, var_name=prompt_var)
 
     url = f"{vllm_cfg.base_url}/completions"
     headers = _build_headers(vllm_cfg)
@@ -305,6 +279,7 @@ def generate_span_for_sentence_vllm(
     text = (choices[0].get("text") if choices else "") or ""
     text = text.strip()
 
+    # nettoyage léger
     if "Span:" in text:
         span_text = text.split("Span:")[-1].strip()
     else:
@@ -317,7 +292,7 @@ def generate_span_for_sentence_vllm(
 
 
 # =========================
-# 6. Négation
+# 7. Négation
 # =========================
 
 def detect_negation(text: Any) -> bool:
@@ -336,7 +311,7 @@ def detect_negation(text: Any) -> bool:
 
 
 # =========================
-# 7. Ecriture batch append
+# 8. Ecriture batch append
 # =========================
 
 def append_batch_tsv(
@@ -352,7 +327,7 @@ def append_batch_tsv(
 
 
 # =========================
-# 8. Main avec logs + reprise
+# 9. Main avec logs + reprise
 # =========================
 
 def main():
@@ -376,6 +351,12 @@ def main():
     logger.info("Config IO: %s", asdict(io_cfg))
     logger.info("Config vLLM: %s", asdict(vllm_cfg))
     logger.info("Config runtime: %s", asdict(rt_cfg))
+    logger.info("Config prompt: %s", asdict(cfg.prompt))
+
+    # --- Charger template prompt une seule fois ---
+    prompt_template = load_prompt_template(cfg.prompt.template_path)
+    prompt_var = cfg.prompt.sentence_var
+    logger.info("Prompt template loaded: %s (var={%s})", cfg.prompt.template_path, prompt_var)
 
     df = load_dataset(io_cfg.data_path, sep=io_cfg.sep, encoding=io_cfg.encoding)
 
@@ -406,33 +387,31 @@ def main():
     global_start = time.perf_counter()
     latencies_all: List[float] = []
 
-    # Session HTTP keep-alive
     with requests.Session() as session:
-        # boucle batches
         while processed < total:
             batch_start_idx = processed
             batch_end_idx = min(processed + batch_size, total)
 
             t_batch0 = time.perf_counter()
-
             df_batch = df.iloc[batch_start_idx:batch_end_idx].copy()
 
             preds: List[str] = []
             times_s: List[float] = []
             negs: List[bool] = []
 
-            # ligne par ligne dans le batch
             for i, sent in enumerate(df_batch[io_cfg.sentence_col].tolist(), start=batch_start_idx):
                 span_pred, elapsed_s = generate_span_for_sentence_vllm(
                     sentence=str(sent),
+                    prompt_template=prompt_template,
+                    prompt_var=prompt_var,
                     vllm_cfg=vllm_cfg,
                     gen_cfg=gen_cfg,
                     session=session,
                 )
+
                 preds.append(span_pred)
                 times_s.append(float(elapsed_s))
                 negs.append(detect_negation(sent))
-
                 latencies_all.append(float(elapsed_s))
 
                 done = (i + 1)
@@ -440,23 +419,18 @@ def main():
                 mean_s = (sum(latencies_all) / len(latencies_all)) if latencies_all else 0.0
                 eta_s = remaining * mean_s
 
-                # log “progress” pas à chaque ligne si tu veux moins bruité :
-                # ici: toutes les 50 lignes OU dernière ligne du batch
                 if done % 50 == 0 or done == batch_end_idx:
                     logger.info(
                         "Progress: %d/%d (remaining=%d) | avg=%.3fs/line | ETA=%.1fs",
                         done, total, remaining, mean_s, eta_s
                     )
 
-            # enrich batch + sauvegarde
             df_batch[pred_col_name] = preds
             df_batch[time_col_name] = times_s
             df_batch[neg_col_name] = negs
 
-            # append TSV
             append_batch_tsv(out_path, df_batch, io_cfg.sep, write_header_if_new=True)
 
-            # checkpoint seulement après sauvegarde réussie
             processed = batch_end_idx
             save_checkpoint(ckpt, processed)
 

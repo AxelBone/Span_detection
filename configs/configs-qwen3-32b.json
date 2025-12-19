@@ -42,5 +42,10 @@
     "log_file": "run.log",
     "log_level": "INFO",
     "resume": true
+  },
+  
+  "prompt": {
+    "template_path": "prompts/span_prompt.txt",
+    "sentence_var": "sentence"
   }
 }
