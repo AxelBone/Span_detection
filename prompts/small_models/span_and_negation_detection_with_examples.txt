@@ -1,0 +1,39 @@
+Task: Extract clinical phenotypes from the sentence and determine whether each phenotype is negative.
+
+A negative phenotype includes cases where the condition is denied, absent, normal, unremarkable, or not occurring.
+
+Rules:
+
+- Extract spans verbatim from the sentence.
+- Mark `negation=false` if the phenotype is present.
+- Mark `negation=true` if absent, denied, or reported as normal.
+- If `negation=true`, provide also `span_without_negation` by removing the negation words.
+- If `negation=false`, set `span_without_negation` equal to `span`.
+- If multiple phenotypes exist, output multiple spans.
+- If no phenotype exists, return: `{"spans":[]}`
+- Do not infer or hallucinate information.
+- Output strict JSON only.
+    
+
+Examples:  
+SENTENCE: "She reports chronic lower back pain."  
+OUTPUT: `{"spans":[{"span":"chronic lower back pain","span_without_negation":"chronic lower back pain","negation":false}]}`
+
+SENTENCE: "He denies chest pain and shortness of breath."  
+OUTPUT: `{"spans":[{"span":"chest pain","span_without_negation":"chest pain","negation":true},{"span":"shortness of breath","span_without_negation":"shortness of breath","negation":true}]}`
+
+SENTENCE: "Neurological examination was normal."  
+OUTPUT: `{"spans":[{"span":"neurological examination","span_without_negation":"neurological examination","negation":true}]}`
+
+SENTENCE: "He has fever and vomiting."  
+OUTPUT: `{"spans":[{"span":"fever","span_without_negation":"fever","negation":false},{"span":"vomiting","span_without_negation":"vomiting","negation":false}]}`
+
+SENTENCE: "MRI of the brain was unremarkable."  
+OUTPUT: `{"spans":[{"span":"MRI of the brain","span_without_negation":"MRI of the brain","negation":true}]}`
+
+SENTENCE: "She went to school yesterday."  
+OUTPUT: `{"spans":[]}`
+
+Now process:  
+SENTENCE: "{sentence}"  
+OUTPUT:

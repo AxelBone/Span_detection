@@ -1,0 +1,19 @@
+Task: Detect clinical phenotypes in the sentence and determine whether each phenotype is negative.
+
+A negative phenotype includes cases where a condition is explicitly denied, absent, ruled out, normal, or reported as not occurring.
+
+Rules:
+
+- Extract spans exactly as written (verbatim).
+- Keep relevant modifiers (e.g., "chronic", "lower back", "mild").
+- Mark `negation=true` if the phenotype is absent, denied, normal, or negative.
+- Mark `negation=false` if the phenotype is present.
+- If multiple phenotypes are present, output multiple spans.
+- Do not infer or hallucinate information not present in the sentence.
+- If no phenotype is present, return: `{"spans":[]}`
+
+Output format (strict JSON only):  
+`{"spans":[{"span":"<text>","negation":true|false}]}`
+
+Sentence: "{sentence}"  
+Output:

@@ -1,0 +1,12 @@
+Task: Extract clinical phenotypes from the following sentence.  
+A clinical phenotype is a sign, symptom, abnormality, or patient condition explicitly stated.  
+Rules:
+- Copy spans exactly as written (no rephrasing).
+- Do not infer or hallucinate additional conditions.
+- If more than one phenotype is present, return multiple spans.
+- If none are present, return {"spans":[]}.
+
+Output format (strict JSON only):  
+{"spans":[{"span":"<text>"}]}
+
+Sentence: "{sentence}"

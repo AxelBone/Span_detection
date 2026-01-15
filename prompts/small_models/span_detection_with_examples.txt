@@ -1,0 +1,28 @@
+Task: Extract clinical phenotypes from the sentence.  
+A clinical phenotype is a symptom, sign, abnormality, or patient condition explicitly stated.
+ 
+Rules:
+- Copy spans exactly as written (no rephrasing or paraphrasing).
+- Keep relevant modifiers (e.g. “chronic”, “lower back”, “mild”).
+- If multiple phenotypes are present, output multiple spans.
+- Do not infer or hallucinate missing information.
+- If no phenotype is present, output: `{"spans":[]}`
+
+Output format (strict JSON only):  
+`{"spans":[{"span":"<text>"}]}`
+Examples:  
+SENTENCE: "She reports chronic lower back pain and frequent headaches."  
+OUTPUT: `{"spans":[{"span":"chronic lower back pain"},{"span":"frequent headaches"}]}`
+
+SENTENCE: "On examination, he has mild hepatomegaly."  
+OUTPUT: `{"spans":[{"span":"mild hepatomegaly"}]}`
+
+SENTENCE: "No abnormal movements were observed during the visit."  
+OUTPUT: `{"spans":[{"span":"abnormal movements"}]}`
+
+SENTENCE: "MRI of the brain was normal."  
+OUTPUT: `{"spans":[]}`
+
+Now process:  
+SENTENCE: "{sentence}"  
+OUTPUT:

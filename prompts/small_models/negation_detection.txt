@@ -1,0 +1,16 @@
+Task: Determine whether the clinical phenotype expressed in the span is negative.
+
+A negative phenotype includes cases where the condition is denied, absent, normal, unremarkable, or not occurring.
+
+Rules:
+
+The input is always a span corresponding to a clinical phenotype.
+Output negation=true if the phenotype is absent or denied.
+Output negation=false if the phenotype is present.
+Output strict JSON only, with no additional text.
+
+Output format:
+{"negation": true|false}
+
+Span: "{span}"
+Output:
