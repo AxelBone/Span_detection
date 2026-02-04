@@ -32,11 +32,11 @@ Ce dépôt contient des scripts pour **l’extraction automatique de spans phén
 │ ├── span_prompt_with_examples_strict_version.txt
 │ └── span_prompt_without_examples_strict_version.txt
 └── scripts
-├── run_spans.py # Script principal (local ou Ollama selon config)
+├── obs # Ancien script
 ├── neg.py
 ├── sample_gold.py
 ├── prepare_gold_standard_for_span_detection_and_negation_evaluation.py
-├── evaluate_time_for_run_spans.py
+├── evaluate_time_for_run_spans_local.py
 ├── evaluate_time_for_run_spans_ollama.py
 └── evaluate_time_for_run_spans_vLLM.py
 ```
@@ -79,24 +79,24 @@ Le paramètre device_map="auto" est supporté.
 Le script lit un fichier TSV / CSV contenant une colonne de phrases.
 
 Exemple minimal :
-Sentence_en
+sentence
 Shortly after birth, he developed tachypnea...
 MR spectroscopy showed a region of increased...
 
 Le nom de la colonne est configurable via :
 
 "io": {
-  "sentence_col": "Sentence_en"
+  "sentence_col": "sentence"
 }
 
 ### ▶️ Utilisation
-Lancer une extraction
+Lancer une extraction locale
 
-`python scripts/run_spans.py --config configs/configs-local.json`
+`python scripts/evaluate_time_for_run_spans_local.py --config configs/configs-local.json`
 
 Ou avec Ollama :
 
-`python scripts/run_spans.py --config configs/configs-ollama.json`
+`python scripts/evaluate_time_for_run_spans_ollama.py --config configs/configs-ollama.json`
 
 ### 🧩 Configuration JSON
 
@@ -173,7 +173,6 @@ Les résultats sont écrits dans :
 results/spans_long_<model>.tsv
 
 Colonnes importantes
-
     model
     prompt_name
     prompt_index
@@ -191,20 +190,17 @@ toutes les colonnes originales du dataset
 Les notebooks et scripts d’évaluation sont disponibles dans :
 
 notebook/
-
     evaluate_span_detection.ipynb
-    evaluate_neg.ipynb
 
-Ils permettent de comparer les prédictions aux gold standards présents dans data/.
+Ils permettent de comparer les prédictions aux gold standards présents dans results/.
+
 🧠 Modèles compatibles
-
     LLaMA / derivatives
     Meditron
     Qwen (souvent trust_remote_code=true)
     Tout modèle compatible AutoModelForCausalLM
 
 🚀 Extensions possibles
-
     Quantisation 4-bit / 8-bit (bitsandbytes)
     vLLM
     batching multi-phrases
@@ -212,7 +208,6 @@ Ils permettent de comparer les prédictions aux gold standards présents dans da
     parsing structuré JSON strict
 
 📌 Notes
-
     Aucun code n’est spécifique à une langue : EN / FR supportés
     Les prompts sont entièrement externalisés
     Le script est conçu pour des runs longs et reproductibles
