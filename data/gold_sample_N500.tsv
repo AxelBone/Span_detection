@@ -1,0 +1,503 @@
+report_id	sentence_id	sentence	gold_span_text	start	length	gold_negated	hpo_id	annotation
+chu50_fr_27	7	Mr et Mme GADBOIS me ramènent des radiographies de Pensée que je vais faire relire attentivement. Concernant les grands-parents, ils viennent pour continuer l'enquête familiale afin de d'essayer d'éclaircir la pathogénicité de ce variant ou non.				False		False
+chu50_fr_10	15	Il n'y a pas eu d'événement de santé très particulier en période néo-natale notamment pas de notion d'hypotonie.	en période néo-natale notamment pas de notion d'hypotonie	54.0	57.0	True	HP:0001319	True
+chu50_fr_46	5	Ils ont toutes eu des enfants qui iraient bien également.				False		False
+chu50_fr_45	14	Autisme qui conclut à un trouble du spectre autistique associé à la déficience intellectuelle avec des centres d'intérêts restreints et des comportements répétitifs et stéréotypés.	trouble du spectre autistique	25.0	29.0	False	HP:0000729	True
+chu50_fr_14	22	Au total : Trisomie 18 libre et homogène, mise en évidence sur la grossesse en cours (hygroma, malformations, caryotype sur direct)	hygroma	86.0	7.0	False	HP:0010878	True
+chu50_fr_26	2	Marc né le 11/11/1991 accompagné de sa conjointe.				False		False
+chu50_fr_12	6	Il n’y a pas d’antécédent de fausse couche spontanée chez la mère, les parents ne sont pas apparentés. Concernant la branche maternelle : Madame Jane LOUKA est née le 03/05/1985, mesure 175cm et pèse 85kg.				False		False
+chu50_fr_14	10	Le contrôle de l’échographie a mis en évidence une méga-vessie et une holoproencéphalie. Je voyais donc le couple à 15 SA.	holoproencéphalie	70.0	17.0	False	HP:0001360	True
+chu50_fr_24	9	Au niveau du tonus, il peut tenir sa tête bien droite.	Au niveau du tonus, il peut tenir sa tête bien droite. Il se retourne du dos sur le ventre, pousse sur les bras	0.0	111.0	True	HP:0001270	True
+chu50_fr_29	16	Je ne manquerai pas de te tenir au courant mais les délais de résultat peuvent être de plusieurs mois.				False		False
+chu50_fr_33	9	Le développement moteur s'est fait normalement avec une marche acquise à l'âge de 13 mois.	marche acquise à l'âge de 13 mois	56.0	33.0	True	HP:0031936	True
+chu50_fr_16	14	Pas de pathologie notable dans la période néonatale. Concernant son développement psychomoteur, il a prononcé « papa » et « maman » à 13 mois, construit	quelques difficultés en motricité fine	52.0	38.0	False	HP:0010862	True
+chu50_fr_02	26	Les réflexes sont présents et symétriques.				False		False
+chu50_fr_17	18	L'IRM réalisée au décours retrouve un aspect de dysplasie corticale focale en regard de la vallée sylvienne droite, compatibles avec les anomalies EEG.	pas de signe d'ataxie	21.0	22.0	True	HP:0001251	True
+chu50_fr_40	26	Je la reverrai probablement avec l'ensemble des résultats et pour reparler de la maladie.				False		False
+chu50_fr_06	5	Antécédents familiaux :				False		False
+chu50_fr_24	1	Au niveau familial, Vallis a 1 grande soeur en bonne santé, l'ensemble de la famille est en bonne santé sans antécédents déclarés.				False		False
+chu50_fr_24	4	Vallis est né normalement à 39 SA + 1 jour avec un AGPAR à 9, poids de naissance à 2590 g (2e p), taille 44.5 cm (0.17e p), PC 36 cm (82e p).	Vallis est né normalement à 39 SA + 1 jour	0.0	42.0	True	HP:0001622	True
+chu50_fr_21	1	, J'ai reçu en consultation le 15 juin 2023 le jeune Lucas, né le 7 avril 2018, accompagné de ses parents.				False		False
+chu50_fr_31	8	Les parents sont toujours très demandeurs d'un conseil génétique et aussi pour leurs autres enfants.				False		False
+chu50_fr_30	3	- Une grossesse sans particularité sans notion de prise de médicaments ou de prise de toxique, sans notion d'infection.				False		False
+chu50_fr_39	6	Elle a eu plusieurs fractures, à chaque fois en rapport avec des traumatismes à haute cinétique.				False		False
+chu50_fr_39	15	Elle avait également une insuffisance rénale fonctionnelle qui a régressé. À ce moment-là, l'EEG était revenu normal ainsi que l'IRM cérébrale. Par la suite, les acquisitions motrices ont été légèrement décalées avec une tenue assise acquise à l'âge de 10 mois et une marche acquise à l'âge de 20 mois.	acquisitions motrices ont été légèrement décalées	162.0	49.0	False	HP:0001270	True
+chu50_fr_45	12	Malthe bénéficie de rééducation orthophonique devant des troubles de l'oralité avec une alimentation toujours mixée.				False		False
+chu50_fr_21	20	L'examen neurologique est par ailleurs sans particularité.	L'examen neurologique est par ailleurs sans particularité	0.0	57.0	True	HP:0012638	True
+chu50_fr_11	24	Je propose la réalisation d'un exome en trio, après l’obtention du consentement pour l’analyses de caractéristiques génétiques constitutionnelles chez Bépane.				False		False
+chu50_fr_10	18	La puberté s'est faite normalement.				False		False
+chu50_fr_38	12	À 4 heures de vie, apparition d’une cyanose péribuccale entraînant le transfert de Valeria en néonatalogie. Sur le plan respiratoire, épisodes de malaises avec blockpnée et cyanose sur glossoptose et rétrognathisme, nécessitant une assistance respiratoire lors du séjour en soins intensifs de néonatalogie. Sur le plan ORL, pas de fente palatine visualisée, PEA concluants de manière bilatérale.	assistance respiratoire	232.0	23.0	False	HP:0004887	True
+chu50_fr_40	16	Le diagnostic a été confirmé sur le plan moléculaire avec mise en évidence d'une mutation déjà décrite dans le gène principal de syndrome de Noonan, PTPN11. À l'examen, la taille est de 1m49 avec un poids de 55kg et un périmètre crânien de 55cm.	taille est de 1m49	171.0	19.0	False	HP:0004322	True
+chu50_fr_12	5	d’une fratrie de 3, avec un frère aîné et une soeur cadette tous deux en bonne santé.				False		False
+chu50_fr_26	23	Monsieur HÉTU est d'accord pour effectuer une prise de sang ce jour.				False		False
+chu50_fr_12	20	Accouchement à 37SA+2J, à l’aide d’une ventouse.				False		False
+chu50_fr_41	17	Brice comprend ce qu'on lui dit mais déforme				False		False
+chu50_fr_08	23	Les premiers crises d’épilepsie ont débuté vers l’âge de 6 mois, avec initialement des crises focales, puis des crises tonico-cloniques généralisées.	épilepsie	22.0	9.0	False	HP:0001250	True
+chu50_fr_33	9	Le développement moteur s'est fait normalement avec une marche acquise à l'âge de 13 mois.	Le développement moteur s'est fait normalement	0.0	46.0	True	HP:0001270	True
+chu50_fr_15	13	Au total : Confirmation moléculaire				False		False
+chu50_fr_35	22	Je ne manquerai pas de vous tenir au courant des résultats. Si le résultat est normal, nous irons probablement jusqu'à une étude d'exome, ce qui nécessitera un prélèvement des deux parents.				False		False
+chu50_fr_10	20	Pas de notion de trouble auditif ou ophtalmologique, pas de notion d'épilepsie ni de trouble du sommeil. A l'examen	ni de trouble du sommeil	79.0	24.0	True	HP:0002360	True
+chu50_fr_38	0	Cher collègue, J'ai rencontré en consultation ce jour, la jeune VROCE Valeria née le 06/01/2024, accompagnée de ses parents, pour séquence de Pierre Robin. Sur le plan familial, son père, Monsieur VROCE est né le 16/09/1994 et est enseignant.	séquence de Pierre Robin	130.0	24.0	False	HP:0000201	True
+chu50_fr_13	25	Développement psychomoteur tout à fait normal : marche à 13mois, pas de retard sur le plan du langage.	pas de retard sur le plan du langage	65.0	36.0	True	HP:0000750	True
+chu50_fr_27	3	Mr Artus GADBOIS né le 24/08/1960.				False		False
+chu50_fr_17	21	Le Docteur DECOUPE, neurochirurgien, a rencontré la patiente dans le cadre d'un avis vis-à-vis d'une éventuelle chirurgie de l'épilepsie en fonction de l'évolution des crises.	macules hypochromiques	133.0	22.0	False	HP:0009719	True
+chu50_fr_46	18	Elle rampe, tourne en rond, attrape ses pieds.				False		False
+chu50_fr_36	10	Il est également facilement distrait par des objets qui l'entoure.	facilement distrait	17.0	19.0	False	HP:0000736	True
+chu50_fr_46	28	Pas de mamelons ombiliqués.	Pas de mamelons ombiliqués	0.0	26.0	True	HP:0003186	True
+chu50_fr_36	19	Il n'y a pas de strabisme évident ce jour chez Julien.	Il n'y a pas de strabisme	0.0	25.0	True	HP:0000486	True
+chu50_fr_47	25	Pas d'anomalie cutanée.	Pas d'anomalie cutanée	0.0	22.0	True	HP:0000951	True
+chu50_fr_10	20	Pas de notion de trouble auditif ou ophtalmologique, pas de notion d'épilepsie ni de trouble du sommeil. A l'examen	pas de notion d'épilepsie	53.0	25.0	True	HP:0001250	True
+chu50_fr_24	25	Nous discutons également du fait que si le diagnostic le confirme, un traitement est désormais disponible pour les patients âgés de plus de 2 ans, ce que la maman avait déjà eu comme information.				False		False
+chu50_fr_17	19	Cette année les crises ont récidivé à deux reprises malgré l'introduction précoce d'un traitement par Keppra à dose optimale.	Absence de plaque peau de chagrin ou d'angiofibrome du visage	124.0	61.0	True	HP:0200035	True
+chu50_fr_10	26	Le rachis est droit.	Le rachis est droit	0.0	19.0	True	HP:0002650	True
+chu50_fr_38	12	À 4 heures de vie, apparition d’une cyanose péribuccale entraînant le transfert de Valeria en néonatalogie. Sur le plan respiratoire, épisodes de malaises avec blockpnée et cyanose sur glossoptose et rétrognathisme, nécessitant une assistance respiratoire lors du séjour en soins intensifs de néonatalogie. Sur le plan ORL, pas de fente palatine visualisée, PEA concluants de manière bilatérale.	rétrognathisme	200.0	14.0	False	HP:0000278	True
+chu50_fr_38	20	Petite fossette sacrée.	fossette sacrée	7.0	15.0	False	HP:0000960	True
+chu50_fr_42	3	Il s'agit du 2ème enfant d'une fratrie de 3.				False		False
+chu50_fr_14	6	Grossesse spontanée, de début estimée le 07/05/2023. L’échographie du 1er trimestre retrouvait un hygroma kystique avec une clarté nucale mesurée à 7 mm pour une longueur craniocaudale de 55 mm.	hygroma kystique	98.0	16.0	False	HP:0010878	True
+chu50_fr_10	20	Pas de notion de trouble auditif ou ophtalmologique, pas de notion d'épilepsie ni de trouble du sommeil. A l'examen	Pas de notion de trouble auditif ou ophtalmologique	0.0	51.0	True	HP:0000364	True
+chu50_fr_50	10	À noter un ictère modéré sans indication de traitement et quelques difficultés transitoires d’alimentation.	ictère	11.0	6.0	False	HP:0000952	True
+chu50_fr_38	17	L’auscultation cardiopulmonaire est sans particularité, l’abdomen est souple dépressible et indolore.	L’auscultation cardiopulmonaire est sans particularité	0.0	54.0	True	HP:0030148	True
+chu50_fr_10	17	Elle avait également des difficultés d'apprentissage, d'allure plutôt modérée, ayant justifié une scolarisation en CLISS et actuellement un dossier en UPI. Par ailleurs, du point de vue staturo-pondéral, elle a évolué avec une surcharge pondérale entre +6 et +7 DS, une taille à +1,5 DS et un périmètre crânien également à + 1,5 DS.	surcharge pondérale entre +6 et +7 DS	227.0	37.0	False	HP:0001513	True
+chu50_fr_13	15	A de longs doigts fins sans signe du pouce ni du poignet.	sans signe du pouce ni du poignet	23.0	33.0	True	HP:0001166	True
+chu50_fr_16	21	. Sur le plan moteur, il se retournait vers l'âge de sept mois, a fait ses premiers pas à 15 mois.				False		False
+chu50_fr_30	11	Au niveau des mains on retrouve également une camptodactylie marquée surtout à gauche.	Au niveau des mains on retrouve également une camptodactylie	0.0	60.0	False	HP:0100490	True
+chu50_fr_15	15	Cordialement,				False		False
+chu50_fr_33	17	Il pourra se discuter également la réalisation d'un exome avec prélèvements des deux parents.				False		False
+chu50_fr_47	29	Sur le plan neurologique, les réflexes ostéotendineux sont perçus et symétriques, pas de déficit sensitivomoteur.	pas de déficit sensitivomoteur	82.0	30.0	True	HP:0000763	True
+chu50_fr_20	23	Les réflexes cutanéoplantaires sont en flexion.	Les réflexes cutanéoplantaires sont en flexion	0.0	46.0	True	HP:0003487	True
+chu50_fr_21	0	Cher Confrère				False		False
+chu50_fr_33	6	Elle était née à 40SA et 1 jour avec un poids de 3kg5 (56e p), une taille de 50.2cm (48e p) et déjà un petit périmètre crânien à 32,1cm (2e p).	poids de 3kg5 (56e p), une taille de 50.2cm (48e p)	40.0	51.0	True	HP:0001511	True
+chu50_fr_39	22	Les parents notent qu'elle a des accès compulsifs pour s'alimenter.	accès compulsifs pour s'alimenter	33.0	33.0	False	HP:0002591	True
+chu50_fr_50	30	dans le cadre de ces éléments vertébraux malformatifs, si possible à cet âge				False		False
+chu50_fr_26	3	Je le rencontre, car il a présenté 2 épisodes neurologiques périphériques faisant évoquer un syndrome de Parsonage Turner. Je reprends rapidement les antécédents familiaux.				False		False
+chu50_fr_08	20	Naissance à 40 SA, accouchement voie basse.				False		False
+chu50_fr_39	28	Au total, troubles de la motricité et des apprentissages modérés avec antécédents d'anoxie périnatale mais pas de signes à l'IRM cérébrale associés à une obésité en voie d'amélioration.	obésité	154.0	7.0	False	HP:0001513	True
+chu50_fr_45	20	Au total, je demande un bilan génétique avec une analyse pangénomique de l'ADN par CGHarray ainsi qu'une étude du locus FMR1 impliqué dans le syndrome de l'X fragile chez un enfant qui présente une déficience intellectuelle associée à des troubles du spectre autistique dans un contexte de dysplasie corticale avec polymicrogyrie et épilepsie néonatale.	épilepsie néonatale	333.0	19.0	False	HP:0032807	True
+chu50_fr_05	9	Il travaille dans le télémarketing.				False		False
+chu50_fr_09	7	Le score hémorragique ISTH-BAT était supérieur à 3.				False		False
+chu50_fr_01	14	Mise en évidence lors de l’échographie du 3e trimestre de fémurs et humérus <1er percentile, avec une EPF au 30e p et un périmètre crânien au 90e p.	fémurs et humérus <1er percentile	58.0	33.0	False	HP:0011428	True
+chu50_fr_45	16	L'auscultation cardio-pulmonaire est normale, l'abdomen est dépressible, indolore, sans hépatosplénomégalie.	hépatosplénomégalie	88.0	19.0	True	HP:0001433	True
+chu50_fr_22	12	La mère de Léa est asymptomatique et son statut génétique est en cours d'évaluation.				False		False
+chu50_fr_41	22	Je ne manquerai pas de vous tenir au courant des résultats.				False		False
+chu50_fr_48	6	Il a présenté quelques épistaxis dans l'enfance et aurait eu quelques saignements digestifs très intermittents.	épistaxis	23.0	9.0	False	HP:0000421	True
+chu50_fr_11	20	Au niveau neurologique, pas d’élément dystonique en faveur d'un syndrome extrapyramidal.	pas d’élément dystonique en faveur d'un syndrome extrapyramidal	24.0	63.0	True	HP:0002071	True
+chu50_fr_14	7	Une biopsie de trophoblaste a donc été réalisée.				False		False
+chu50_fr_37	2	Anatole BONNET né le 12/05/2010 qui est suivi pour un tableau complexe de troubles du développement global avec une déficience intellectuelle et une ataxie cérébelleuse non progressive sans étiquette actuellement.	ataxie cérébelleuse non progressive	149.0	35.0	False	HP:0002470	True
+chu50_fr_28	9	Antécédents personnels :				False		False
+chu50_fr_49	3	Une grossesse sous Dépakine compte-tenu d’une épilepsie ancienne, rapidement arrêtée au premier trimestre dès que la mère a su qu'elle était enceinte.	épilepsie	46.0	9.0	False	HP:0001250	True
+chu50_fr_30	0	Cher confrère, Avec le Dr DE LA RONDE, neurologue au CRDI, nous avons rencontré en consultation Madame MARIE AUDET, née le 07/01/2001, pour reprendre le bilan étiologique dans le cadre d'un trouble du neurodéveloppement associant une déficience intellectuelle et des éléments malformatifs à type de pieds varus équin et de colobome.	colobome	323.0	8.0	False	HP:0000589	True
+chu50_fr_23	17	droite connue.				False		False
+chu50_fr_21	2	Cette consultation était motivée par des inquiétudes parentales concernant le développement global de l'enfant.				False		False
+chu50_fr_10	1	Mathilde MOVEGENE née le 06/06/1999 dans le cadre d'un bilan chez une jeune fille qui présente un retard de langage s’inscrivant dans tableau associant un retard plus global et une obésité.	retard plus global	155.0	18.0	False	HP:0001263	True
+chu50_fr_17	3	Antécédents familiaux : Nénuphrine est la 3e enfant d'un couple non apparenté en bonne santé. Son père, travaille comme dentiste et n'a pas d'antécédent notable.				False		False
+chu50_fr_14	24	Demande par le couple d’une interruption médicale de grossesse.				False		False
+chu50_fr_35	3	Il n'y a pas d'antécédents très spécifiques ni d'un côté ni de l'autre.				False		False
+chu50_fr_46	33	Nous leur proposons donc de faire un examen chromosomique par puce à ADN.				False		False
+chu50_fr_34	5	Au départ, c'est le dépistage des marqueurs sériques du premier trimestre qui avait retrouvé un risque estimé de trisomie 21 à 1/60.				False		False
+chu50_fr_09	18	Nous avons prélevé Artem ce jour afin d’établir le diagnostic génétique.				False		False
+chu50_fr_09	12	On retrouve un déficit isolé du facteur VIII (F VIII 3%), un facteur IX normal à 85%, un FVW normal et une absence d’anticorps anti-FVIII.	un facteur IX normal à 85%	58.0	26.0	True	HP:0033062	True
+chu50_fr_39	26	Je ne retrouve pas d'éléments morphologiques très spécifiques.	Je ne retrouve pas d'éléments morphologiques très spécifiques	0.0	61.0	True	HP:0001999	True
+chu50_fr_18	2	Nous avons vu le 25/07/2023 en consultation de génétique l'enfant PACOMSONPER Picasso, né le 25/07/2022, dans le cadre du suivi d'un syndrome polymalformatif sans étiologie connue à ce jour.				False		False
+chu50_fr_44	7	Les PEA étaient positifs à droite et à gauche.	Les PEA étaient positifs à droite et à gauche	0.0	45.0	True	HP:0000365	True
+chu50_fr_12	10	Sa mère est suivie pour un diabète insulino-requérant et son père pour une cirrhose évoluée du foie conséquence d’un éthylisme chronique.	diabète insulino-requérant	27.0	26.0	False	HP:0000819	True
+chu50_fr_08	3	En effet la famille a récemment déménagé dans la région.				False		False
+chu50_fr_16	23	Les premières inquiétudes remontent à ses 26 mois où la crèche mentionnait un comportement plutôt solitaire associé à une agitation importante et des difficultés à se focaliser sur les différentes activités.	Ses réflexes ostéotendineux et cutanéoplantaires sont normaux	124.0	61.0	True	HP:0031826	True
+chu50_fr_28	4	Antécédents familiaux : Amédée est la première enfant d'un couple caucasien non apparenté en bonne santé.				False		False
+chu50_fr_34	0	J'ai fait la connaissance de Mme Delphine LAMY née le 16.09.1987, à la suite de la découverte d'une probable trisomie 13 chez son foetus, repérée par DPNI.				False		False
+chu50_fr_07	14	Il n’y a pas de syndrome cérébelleux, il n’y a pas d’ophtalmoplégie.	il n’y a pas d’ophtalmoplégie	37.0	30.0	True	HP:0000602	True
+chu50_fr_05	25	, probablement génétique.				False		False
+chu50_fr_47	10	La microsomie hémifaciale gauche avec aplasie majeure de l'oreille gauche a été constatée à la naissance justifiant un bilan malformatif associant radiographies du rachis cervical, échographie rénale et échographie cardiaque vraisemblablement normales mais nous n'en avons pas les conclusions.	aplasie majeure de l'oreille gauche	38.0	35.0	False	HP:0008551	True
+chu50_fr_20	27	Nous rappelons ce jour à la patiente les atteintes et la transmission de la maladie de Fabry.				False		False
+chu50_fr_22	10	On note une hyperlaxité articulaire diffuse.	hyperlaxité articulaire diffuse	12.0	31.0	False	HP:0001382	True
+chu50_fr_47	21	Nous notons bien entendu cette microsomie hémifaciale gauche avec aplasie majeure de l'oreille.	aplasie majeure de l'oreille	66.0	28.0	False	HP:0008551	True
+chu50_fr_48	2	Il n'y avait pas de consanguinité connue entre ses parents.				False		False
+chu50_fr_09	10	On constate au niveau du bilan un allongement isolé du TCA et un taux de prothrombine normal.				False		False
+chu50_fr_36	6	Il n'a pas d'hétéro-agressivité.	Il n'a pas d'hétéro-agressivité	0.0	31.0	True	HP:0000718	True
+chu50_fr_47	20	À noter qu'il est très coopérant et souriant lors de l'examen.				False		False
+chu50_fr_42	11	Un bilan biologique sanguin a été réalisé le 08 mars dernier au CHU de Rennes et montrait : ionogramme sanguin normal, TSH normale, créatinine augmentée à 92 μmol/l, numération formule sanguine satisfaisante mais une discrète leucopénie à 4000 leucocytes/mm³. Michael présente un trouble du développement intellectuel associé à un trouble du spectre de l'autisme.	trouble du développement intellectuel	280.0	37.0	False	HP:0001249	True
+chu50_fr_21	10	Il a acquis la marche à 20 mois.	Il a acquis la marche à 20 mois	0.0	31.0	False	HP:0031936	True
+chu50_fr_38	26	Les parents s’interrogent également sur le risque de récidive dans l’hypothèse d’une nouvelle grossesse, je leur explique qu’en l’absence de diagnostic génétique clair il est difficile de leur faire un conseil génétique adapté Au total : Séquence de Pierre Robin avec rétrognathisme et glossoptose entraînant des difficultés respiratoires et alimentaires.	glossoptose	286.0	11.0	False	HP:0000162	True
+chu50_fr_24	4	Vallis est né normalement à 39 SA + 1 jour avec un AGPAR à 9, poids de naissance à 2590 g (2e p), taille 44.5 cm (0.17e p), PC 36 cm (82e p).	poids de naissance à 2590 g (2e p), taille 44.5 cm (0.17e p), PC 36 cm (82e p)	62.0	78.0	False	HP:0004482	True
+chu50_fr_26	12	Il a bénéficié d'un EMG qui s'est avéré normal.	Il a bénéficié d'un EMG qui s'est avéré normal	0.0	46.0	True	HP:0003457	True
+chu50_fr_30	10	L'examen morphologique est donc marqué par cette microcéphalie importante (autour de -4 DS), la malformation de l’oreille gauche, des pieds très fins (avec des cicatrices de chirurgie sur ses pieds-bots).	malformation de l’oreille gauche	96.0	32.0	False	HP:0031703	True
+chu50_fr_35	0	J'ai fait la connaissance du jeune Grégoire L'HEUREUX né le 10.08.2002, bientôt 17 ans, qui est suivi pour des difficultés d'apprentissage avec troubles du comportement étiquetés troubles envahissants du développement.	difficultés d'apprentissage	111.0	27.0	False	HP:0001249	True
+chu50_fr_41	5	Dans la famille, sa mère a été suivie pour des problèmes oesophagiens et a subi un by-pass.				False		False
+chu50_fr_28	18	Notion d'hypotonie axiale et périphérique dans la période néonatale, avec ETF et EEG sans particularités.	hypotonie axiale et périphérique	9.0	32.0	False	HP:0001290	True
+chu50_fr_22	7	Son sommeil nocturne est perturbé, avec des réveils fréquents et des difficultés d'endormissement. Sur le plan comportemental, Léa est décrite comme une enfant anxieuse, avec une tendance à l'isolement social.	enfant anxieuse	153.0	15.0	False	HP:0000739	True
+chu50_fr_09	4	Artem rapportent des ecchymoses spontanées sur les membres et des pétéchies.	ecchymoses spontanées	21.0	21.0	False	HP:0007420	True
+chu50_fr_14	12	La trisomie 18 est un syndrome polymalformatif sévère.				False		False
+chu50_fr_28	8	Une grande tante maternelle aurait présenté une hexadactylie bilatérale avec bourgeons digitaux cutanés post-axiaux. Enfin, la tante paternelle, aurait un garçon opéré d'une cryptorchidie bilatérale et un bon développement psychomoteur à l'âge de quatre ans.	cryptorchidie bilatérale	174.0	24.0	False	HP:0008689	True
+chu50_fr_27	5	J'avais initialement rencontré Gabrielle qui présente une déformation de Madelung bilatérale pour laquelle des examens de génétique ont été réalisé qui ont permis de retrouver une variation de signification inconnue à type de duplication en amont du locus SHOX actuellement décrit.	déformation de Madelung	58.0	23.0	False	HP:0003067	True
+chu50_fr_10	8	MOVEGENE née GAYET				False		False
+chu50_fr_13	25	Développement psychomoteur tout à fait normal : marche à 13mois, pas de retard sur le plan du langage.	marche à 13mois	48.0	15.0	True	HP:0031936	True
+chu50_fr_12	15	Il me mentionne un cousin germain souffrant d’une déficience intellectuelle et pris en charge en IME.	déficience intellectuelle	50.0	25.0	False	HP:0001249	True
+chu50_fr_08	15	Il a une soeur qui a deux enfants, sans problèmes de santé rapportés.				False		False
+chu50_fr_10	21	ce jour, on note un poids à 55,5 kg soit +7DS pour une taille à 154,5 cm soit +1.5DS, le PC est normal.	55,5 kg soit +7DS	28.0	17.0	False	HP:0001513	True
+chu50_fr_17	22	Il sollicite notre avis vis-à-vis de l'étiologie de ce type de lésion. À l'examen clinique ce jour : Nénuphrine est âgée de 7 ans, elle pèse 25 kg (90e percentile), mesure 120 cm (+0,5 DS) et à un PC de 53 cm (+1,5 DS).	dysplasie corticale focale	175.0	26.0	False	HP:0032046	True
+chu50_fr_16	25	Examen clinique : Titouan pèse 15 kg (-1 DS), mesure 105 cm (+1 DS) et a un PC de 55 cm (à la moyenne).	sans neurofibromes	62.0	18.0	True	HP:0001067	True
+chu50_fr_12	3	Anon LOUKA, né le 15/02/2016 âgé de 9 ans et 3 mois dans le cadre d’un retard global des acquisitions associé à des particularités morphologiques.	particularités morphologiques	116.0	29.0	False	HP:0001999	True
+chu50_fr_23	10	Celle-ci est revenue normale. À l'examen clinique (9 ans), Eulalie mesure 146 cm (+2 DS), pèse 50.1 kg (>99e p), IMC 23.5 kg/m² (>IOTF30) , périmètre crânien 52 cm (M).	périmètre crânien 52 cm (M)	100.0	27.0	True	HP:0000240	True
+chu50_fr_07	14	Il n’y a pas de syndrome cérébelleux, il n’y a pas d’ophtalmoplégie.	Il n’y a pas de syndrome cérébelleux	0.0	36.0	True	HP:0001251	True
+chu50_fr_50	14	– Un discret souffle cardiaque avec à l'échographie une petit CIV musculaire.	souffle cardiaque	13.0	17.0	False	HP:0030148	True
+chu50_fr_19	7	Les premières explorations comprenaient une IRM et un scanner des rochers, une échographie rénale, un ECG et la recherche de protéinurie.	Les premières explorations comprenaient une IRM et un scanner des rochers, une échographie rénale, un ECG et la recherche de protéinurie. Ce bilan est revenu normal	0.0	164.0	True	HP:0000093	True
+chu50_fr_47	11	Antoine n'a jamais bénéficié d'IRM cérébrale. Sur le plan du développement psychomoteur, il a commencé à marcher à l'âge de 17 mois mais la marche libérée réellement stable n'a été acquise qu'à l'âge de 25 mois sachant qu'il avait tenu assis de façon décalée plutôt vers l'âge de 12 mois.	il a commencé à marcher à l'âge de 17 mois mais la marche libérée réellement stable n'a été acquise qu'à l'âge de 25 mois sachant qu'il avait tenu assis de façon décalée plutôt vers l'âge de 12 mois. Actuellement, à l'âge de 3 ans, il ne monte pas les escaliers et ne shoote pas dans les ballons	89.0	295.0	False	HP:0002194	True
+chu50_fr_50	18	La tenue de tête est acquise et stable.				False		False
+chu50_fr_46	26	En position assise elle présente encore une légère cyphose.	cyphose	51.0	7.0	False	HP:0002808	True
+chu50_fr_14	16	Les malformations sont fréquentes : coeur (> 90% des cas), tube digestif (atrésie oesophagienne, malformation anorectale), rein et voies urinaires (hydronéphrose, agénésie uni- ou bilatérale), yeux (microphtalmie, colobome), … Le couple souhaite s'orienter vers une demande d'interruption médicale de grossesse.	rein et voies urinaires	123.0	23.0	False	HP:0012210	True
+chu50_fr_33	4	Lui-même est atteint d’une forme d’ataxie de Friedrich d’apparition tardive. Dans sa famille, on note que son père est suivi pour des problèmes cardiaques et une myopathie tardive d'étiologie inconnue. Du côté de la maman, qui est fille unique, on note surtout une HTA de découverte récente chez son père. Le périmètre des crâniens des parents est dans les normes. Quant à Camille, la grossesse est sans particularité.	HTA de découverte récente chez son père	265.0	39.0	False	HP:0000822	True
+chu50_fr_08	37	Il n’y pas de déficit moteur.	Il n’y pas de déficit moteur	0.0	28.0	True	HP:0004302	True
+chu50_fr_06	8	Taille : 170 cm IMC : 22.491 kg/m² La marche est très instable, la station debout est impossible sur une base étroite.	La marche est très instable	35.0	27.0	False	HP:0002317	True
+chu50_fr_19	9	Madame DURE a également présenté trois crises d'épilepsie à partir de l'adolescence, aujourd'hui traitées par Lamictal, dans la description clinique est évocateur de crises atoniques et d'absences atypiques. Son père, bien entendant, est suivi pour schizophrénie atypique, pour laquelle un bilan étiologique est en cours avec suspicion récente de démence à corps de Lewy.	épilepsie	48.0	9.0	False	HP:0001250	True
+chu50_fr_08	4	Antécédents familiaux : Valérie est l’ainée d’une fratrie de 3.				False		False
+chu50_fr_25	4	Il n'aurait pas eu d'autre complication de santé à sa connaissance, notamment pas de gliome des voies optiques ou de tumeurs.	pas de gliome des voies optiques	78.0	32.0	True	HP:0009734	True
+chu50_fr_50	15	– Des anomalies de segmentation avec hémi-vertèbres T6 et T7 et une paire de côte surnuméraire. Depuis la sortie de maternité, l'évolution est globalement satisfaisante tant du point de vue de la croissance staturopondérale et de l'évolution psychomotrice. À l'examen	hémi-vertèbres T6 et T7	38.0	23.0	False	HP:0008467	True
+chu50_fr_20	19	- Créatinine et protéinurie négatives en décembre 2022	Créatinine et protéinurie négatives	2.0	35.0	True	HP:0000093	True
+chu50_fr_43	21	Auscultation cardiopulmonaire normale, pouls fémoraux présents et symétriques.	Auscultation cardiopulmonaire normale	0.0	37.0	True	HP:0030148	True
+chu50_fr_05	26	Explorations génétiques en cours. Bien confraternellement.				False		False
+chu50_fr_16	38	Nous ne retrouvons aucun élément évocateur d'antécédents familiaux similaires mais nous expliquons que cette pathologie, transmission autosomique dominante, survient dans une grande partie des cas de novo.				False		False
+chu50_fr_44	8	Les mensurations à la naissance étaient les suivantes: Poids: 2950 g (43e p) Taille : 47 cm (24e p) Périmètre crânien : 33,5 cm (10e p) Développement psychomoteur : La marche a été acquise à l'âge de 27 mois.	"Poids: 2950 g (43e p)
+Taille : 47 cm (24e p)
+Périmètre crânien : 33,5 cm (10e p)"	55.0	80.0	True	HP:0001511	True
+chu50_fr_45	9	Il a commencé à gazouiller vers l'âge de 13 mois.	Il a commencé à gazouiller vers l'âge de 13 mois	0.0	48.0	False	HP:0000750	True
+chu50_fr_25	26	Les manifestations les plus souvent rencontrées sont cutanées et neurologiques mais d’autres organes peuvent être touchés comme l’oeil, les os.				False		False
+chu50_fr_16	24	Il a été vu dans ce contexte par le Dr PLOU, médecin traitant de la famille, qui nous adresse ce jour Titouan alerté par de multiples tâches café au lait.	Sur le plan morphologique nous ne retrouvons pas de particularité notable	13.0	73.0	True	HP:0001999	True
+chu50_fr_49	6	Il a eu un parcours scolaire relativement classique jusqu'en CM2 puis une orientation en SEGPA jusqu'en 3e.	orientation en SEGPA jusqu'en 3e	74.0	32.0	False	HP:0001249	True
+chu50_fr_17	2	Nous avons vu le 25/07/2023 en consultation de génétique l'enfant DELAFONTAINE Nénuphrine, née le 25/07/2017 en présence de ses parents, pour suspicion de sclérose tubéreuse de Bourneville.				False		False
+chu50_fr_49	2	En ce qui concerne ce jeune homme, on retient les points suivants : –				False		False
+chu50_fr_38	12	À 4 heures de vie, apparition d’une cyanose péribuccale entraînant le transfert de Valeria en néonatalogie. Sur le plan respiratoire, épisodes de malaises avec blockpnée et cyanose sur glossoptose et rétrognathisme, nécessitant une assistance respiratoire lors du séjour en soins intensifs de néonatalogie. Sur le plan ORL, pas de fente palatine visualisée, PEA concluants de manière bilatérale.	pas de fente palatine	324.0	21.0	True	HP:0000175	True
+chu50_fr_25	34	Rodrigo aura un risque sur deux de transmettre la maladie à ses enfants, quel que soit leur sexe à chaque grossesse. Par ailleurs, la NF1 est une maladie d’expressivité très variable ce qui signifie que les manifestations cliniques sont extrêmement différentes d’un malade à l’autre notamment sur le plan de la gravité.				False		False
+chu50_fr_14	20	Dans ce cadre, il est proposé la réalisation systématique d'un DPNI lors des grossesses suivantes.				False		False
+chu50_fr_46	23	Il n'y a pas de dysmorphie très évidente.	pas de dysmorphie très évidente	9.0	31.0	True	HP:0001999	True
+chu50_fr_17	7	Elle ne mentionne pas d'antécédent notable dans sa branche familiale.	née à terme à 39 SA avec des mensurations dans la norme	49.0	55.0	True	HP:0001511	True
+chu50_fr_34	14	Il sera important de faire le caryotype foetal à la naissance, soit sur le sang du cordon, soit dans les premiers jours de vie.				False		False
+chu50_fr_30	0	Cher confrère, Avec le Dr DE LA RONDE, neurologue au CRDI, nous avons rencontré en consultation Madame MARIE AUDET, née le 07/01/2001, pour reprendre le bilan étiologique dans le cadre d'un trouble du neurodéveloppement associant une déficience intellectuelle et des éléments malformatifs à type de pieds varus équin et de colobome.	trouble du neurodéveloppement	190.0	29.0	False	HP:0012758	True
+chu50_fr_32	5	Elle n'a a priori pas eu de problème de lymphoedème congénital dans l'enfance ou même plus tard.	Elle n'a a priori pas eu de problème de lymphoedème congénital	0.0	62.0	True	HP:0001004	True
+chu50_fr_23	9	Une IRM cérébrale a été réalisée dans un contexte de céphalées chroniques.	céphalées	12.0	9.0	False	HP:0002315	True
+chu50_fr_26	25	Le rendu du résultat pourra se faire en téléconsultation avec son accord.				False		False
+chu50_fr_36	3	Il est maintenant en IME avec une prise en charge multidisciplinaire associée à une prise en charge orthophonique en libéral, un travail sur le langage oral et également sur les pictogrammes mais Julien n'adhère que partiellement à ces derniers.	Il est maintenant en IME	0.0	24.0	False	HP:0001249	True
+chu50_fr_37	3	Il continue à faire régulièrement des progrès avec une bonne intégration en IME.	Il continue à faire régulièrement des progrès avec une bonne intégration en IME	0.0	79.0	False	HP:0001249	True
+chu50_fr_34	2	Par contre, elle a déjà présenté 3 fausses couches spontanées précoces.	3 fausses couches spontanées précoces	33.0	37.0	False	HP:0200067	True
+chu50_fr_28	34	Nous proposons de compléter le bilan par la réalisation d'une échographie abdominale à titre systématique afin de ne pas méconnaître d'anomalie de la morphologie rénale, et poursuivons ce jour les explorations de génétique par la réalisation d'un exome en trio.				False		False
+chu50_fr_28	32	Au total : Amédée est une jeune fille de 2 ans et 9 mois présentant l'association d'un retard staturopondéral post-natal inexpliqué, avec hexadactylie post-axiale aux quatre membres ainsi qu'un discret décalage des acquisitions psychomotrices.	décalage des acquisitions psychomotrices	202.0	40.0	False	HP:0001263	True
+chu50_fr_29	14	Au total, il existe une possible forme familiale de dilatation aortique sans signe clinique associé très spécifique.	dilatation aortique	52.0	19.0	False	HP:0004942	True
+chu50_fr_16	36	Cette étude est externalisée auprès de l’APHP.				False		False
+chu50_fr_38	25	Ils seront revus dans un délai de 6 à 8 mois par un généticien, avec les premiers résultats.				False		False
+chu50_fr_17	17	Un bilan neuropsychologique est prévu devant une grande labilité attentionnelle par ailleurs. À l'âge de 6 ans Nénuphrine a présenté une première crise tonicoclonique généralisée, avec pointes-ondes focales temporales droites intercritiques à l'EEG faisant suspecter une lésion focale.	ses réflexes ostéotendineux sont vifs de façon isolée	192.0	53.0	False	HP:0001347	True
+chu50_fr_15	6	Ces analyses ont mis en évidence un variant non-sens homozygote (p.Arg45Ter) dans le gène NDUFAF2, signant un diagnostic de déficit isolé en Complexe I chez Léo.				False		False
+chu50_fr_36	13	Il est toujours suivi pour une épilepsie avec une tentative d'arrêt de traitement récente qui a engendré la récidive de 2 crises hémi-corporelles et la reprise de la MICROPAKINE a permis la non-récidive de ses crises et la normalisation immédiate de l'EEG. À l'examen clinique ce jour, il mesure 1 mètre 28 (	il mesure 1 mètre 28 (- 2 DS) pour un poids à 22 kg (<-2 DS)	286.0	60.0	False	HP:0001530	True
+chu50_fr_27	17	Rien à signaler par ailleurs.				False		False
+chu50_fr_39	25	Les extrémités sont plutôt un peu courtes.	Les extrémités sont plutôt un peu courtes	0.0	41.0	False	HP:0004279	True
+chu50_fr_06	16	Je prescris ce jour une étude de l’ADN mitochondrial sur sang et urine.				False		False
+chu50_fr_16	22	Il aurait actuellement quelques difficultés en motricité fine motivant une prise en charge hebdomadaire en psychomotricité, notamment pour l'écriture et le dessin.	Titouan pèse 15 kg (-1 DS), mesure 105 cm (+1 DS) et a un PC de 55 cm (à la moyenne)	108.0	84.0	True	HP:0001507	True
+chu50_fr_15	8	Le risque de récidive à chaque nouvelle grossesse est de 25%. Concernant l’évolution de Léo : La pathologie est évolutive et Léon a dû être ré-hospitalisé pour des vomissements récurrents.	vomissements récurrents	164.0	23.0	False	HP:0002572	True
+chu50_fr_18	10	Picasso est né à 39 SA avec une taille et un poids inférieur au 3e p et un PCN conservé au 10e p. Apgar 2/2/3 sur dysplasie thoracique avec côtes courtes.	taille et un poids inférieur au 3e p	32.0	36.0	False	HP:0003561	True
+chu50_fr_33	11	Il n'y a pas de retard de ce côté là non plus.				False		False
+chu50_fr_28	15	un support ventilatoire par lunettes à oxygène				False		False
+chu50_fr_23	20	Recevez l’assurance de mes sincères salutations.				False		False
+chu50_fr_47	19	Il avait été vue en consultation de génétique clinique il y a 2 ans, sans analyses génétiques au décours. À l'examen clinique ce jour à l'âge de 3 ans et 2 mois, Antoine mesure 91 cm (-1.5 DS), pèse 10,8 kgs (-2 DS) avec un PC à 47 cm (-2.5 DS).	PC à 47 cm (-2.5 DS)	224.0	20.0	False	HP:0000252	True
+chu50_fr_06	14	L’association diabète/surdité/myopathie fait soulever l’hypothèse d’une pathologie mitochondriale de type MIDD/MELAS.	diabète	14.0	7.0	False	HP:0000819	True
+chu50_fr_48	3	Il n'y a pas d'antécédent très spécifique dans la famille. M. Osman MEWAEL présente une forme classique d'albinisme oculo-cutané avec une peau blanche, des cheveux blonds très pâles, et une déficience visuelle avec nystagmus.	cheveux blonds très pâles	156.0	25.0	False	HP:0011358	True
+chu50_fr_44	8	Les mensurations à la naissance étaient les suivantes: Poids: 2950 g (43e p) Taille : 47 cm (24e p) Périmètre crânien : 33,5 cm (10e p) Développement psychomoteur : La marche a été acquise à l'âge de 27 mois.	La marche a été acquise à l'âge de 27 mois	165.0	42.0	False	HP:0031936	True
+chu50_fr_19	11	Elle ne rapporte pas de vertige, mais des acouphènes permanents. Sur le plan de l'épilepsie, il n'y a plus de crises atoniques depuis l'introduction du Lamictal, mais il existe peut-être des absences persistantes possiblement pluriquotidiennes pour lesquelles nous redemandons un électroencéphalogramme ce jour. Sur le plan social, les dossiers ALD et MDPH sont à jour.	acouphènes	42.0	10.0	False	HP:0000360	True
+chu50_fr_45	19	On note un philtrum court, des lèvres charnues, il n'y a pas d'anomalie des extrémités, le rachis est rectiligne.	philtrum court	11.0	14.0	False	HP:0000322	True
+chu50_fr_01	24	FGR3 et scanner osseux.				False		False
+chu50_fr_13	33	Il chausse du 42.				False		False
+chu50_fr_30	4	- Un accouchement à terme avec une bonne adaptation à la vie extra-utérine.	accouchement à terme	5.0	20.0	True	HP:0001622	True
+chu50_fr_07	10	Par ailleurs, il existe des difficultés de croissance avec ce jour un poids à 29 kg (10ème percentile) pour une taille à 123 cm (	difficultés de croissance	28.0	25.0	False	HP:0001510	True
+chu50_fr_34	7	Il est en effet important de savoir s'il s'agit d'une trisomie 13 accidentelle habituelle, une trisomie libre ou s'il s'agit d'une très rare translocation impliquant le chromosome 13. D'autre part, une échographie morphologique a été réalisée récemment par le Dr M. ÉDOUARD qui retrouve bien des malformations évocatrices de trisomie 13 : holoprosencéphalie semi lobaire ou lobaire, cardiopathie de type probablement ventricule droit à double issue, petite CIV associée, anomalie des oreilles, microphtalmie au moins unilatérale, fente labiopalatine bilatérale.	fente labiopalatine bilatérale	530.0	30.0	False	HP:0002744	True
+chu50_fr_08	27	Elle a marché vers 24 mois.	Elle a marché vers 24 mois	0.0	26.0	False	HP:0031936	True
+chu50_fr_11	6	, nous avons peu d’éléments concernant son histoire périnatale : Une grossesse et un accouchement sans particularité à 38 SA ; poids de naissance de 3,2 kg, taille de naissance à 52 cm. Vers l'âge de 12 mois, elle présente un malaise avec cyanose dans un contexte fébrile puis apparition des premières crises d'épilepsie avec clonies des paupières et chute de la tête.	malaise	226.0	7.0	False	HP:0007185	True
+chu50_fr_35	20	Au total, trouble envahissant du développement avec difficultés d'apprentissage et au départ retard de langage important	difficultés d'apprentissage et au départ retard de langage important	52.0	68.0	False	HP:0001249	True
+chu50_fr_11	22	Les réflexes ostéotendineux sont présents aux membres supérieurs, absents aux membres inférieurs.	Les réflexes ostéotendineux sont présents aux membres supérieurs	0.0	64.0	True	HP:0012046	True
+chu50_fr_46	34	Si cet examen s'avère normal, un examen du locus X fragile sera réalisé à titre systématique. Bien confraternellement.				False		False
+chu50_fr_23	6	Pour la rentrée prochaine, il est prévu une entrée en classe ULIS. Sur le plan pédopsychiatrique, Eulalie est en liste d’attente pour une consultation avec un pédopsychiatre du Centre Pierre Vengier pour affiner le diagnostic.				False		False
+chu50_fr_16	30	nous retrouvons peu de particularité en dehors d'un palais discrètement creux et d'une plagiocéphalie occipitale gauche.	gliome des voies optiques	62.0	25.0	False	HP:0009734	True
+chu50_fr_15	10	L’examen neurologique s’est aussi dégradé avec apparition de mouvements choréiques.	mouvements choréiques	61.0	21.0	False	HP:0002072	True
+chu50_fr_03	22	Pour poursuivre les démarches étiologiques, je propose ce jour d’inclure Marc dans un projet de recherche dédié aux impasses diagnostiques, avec RNAseq et génome long read.				False		False
+chu50_fr_20	22	Ses réflexes ostéotendineux sont difficilement retrouvés en rotulien mais les réflexes achilléens sont normaux.	Ses réflexes ostéotendineux sont difficilement retrouvés en rotulien	0.0	68.0	False	HP:0011808	True
+chu50_fr_06	9	Il y a probablement une apraxie bien que son évaluation soit compliquée par la surdité profonde.	apraxie	24.0	7.0	False	HP:0002186	True
+chu50_fr_09	13	Artem est donc atteint d’une hémophilie A modérée.				False		False
+chu50_fr_24	15	La cavité buccale paraît correcte, il n'a pas encore de dents.				False		False
+chu50_fr_17	5	Sa mère travaille comme bibliothécaire.	présenterait des mouvements répétés évocateurs de stéréotypies	10.0	62.0	False	HP:0000733	True
+chu50_fr_25	18	La marche en tandem est encore hésitante.				False		False
+chu50_fr_29	10	En ce qui concerne M. Bernard PETRIE, il n'a aucun antécédent médicochirurgical particulier, notamment pas de pneumothorax ou d'anomalie ophtalmologique en dehors d'une myopie simple. À l'examen ce jour on ne retrouve pas non plus de signe squelettique très évocateur d'un syndrome de Marfan avec notamment une absence d'anomalie du sternum, pas d'arachnodactylie, pas de signe du poignet ou du pouce, pas d'anomalie au niveau des pieds de la peau et de la bouche (luette normale).	myopie	169.0	6.0	False	HP:0000545	True
+chu50_fr_08	31	Examen clinique (5,5 ans) : Poids 20,5 kg (75e p)				False		False
+chu50_fr_44	21	Rééducations : Psychomotricité hebdomadaire en libéral	Psychomotricité hebdomadaire en libéral	15.0	39.0	False	HP:0001263	True
+chu50_fr_17	17	Un bilan neuropsychologique est prévu devant une grande labilité attentionnelle par ailleurs. À l'âge de 6 ans Nénuphrine a présenté une première crise tonicoclonique généralisée, avec pointes-ondes focales temporales droites intercritiques à l'EEG faisant suspecter une lésion focale.	elle pèse 25 kg (90e p), mesure 120 cm (+0,5 DS) et à un PC de 53 cm (+1,5 DS)	87.0	78.0	True	HP:0001507	True
+chu50_fr_25	15	Je constate de nombreuses taches café au lait dans le cadre de sa pathologie de neurofibromatose de type 1.	taches café au lait	26.0	19.0	False	HP:0000957	True
+chu50_fr_39	15	Elle avait également une insuffisance rénale fonctionnelle qui a régressé. À ce moment-là, l'EEG était revenu normal ainsi que l'IRM cérébrale. Par la suite, les acquisitions motrices ont été légèrement décalées avec une tenue assise acquise à l'âge de 10 mois et une marche acquise à l'âge de 20 mois.	une marche acquise à l'âge de 20 mois	264.0	37.0	False	HP:0031936	True
+chu50_fr_14	3	Elle ne rapporte pas de pathologies particulières, de handicap, ou de MFIU dans sa branche familiale.				False		False
+chu50_fr_41	19	Au total, sténose supra valvulaire aortique associée à un antécédent de RCIU, dilatation pyélocalicielle, et léger retard des apprentissages.	dilatation pyélocalicielle	78.0	26.0	False	HP:0100581	True
+chu50_fr_02	21	Une amniocentèse a été proposée au couple, ce qu’ils ont décliné.				False		False
+chu50_fr_25	10	Concernant la neurofibromatose de type 1, les taches café au lait nombreuses sont apparues vers l'âge de 2 à 3 mois de vie.	taches café au lait	46.0	19.0	False	HP:0000957	True
+chu50_fr_16	3	Le couple n'a pas d'antécédent de fausse couche ni de période d'infertilité.	ni de période d'infertilité	48.0	27.0	True	HP:0000789	True
+chu50_fr_25	27	L’hypertension artérielle y est plus fréquente que dans la population générale, ainsi que certains cancers.	hypertension artérielle	2.0	23.0	False	HP:0000822	True
+chu50_fr_28	31	Les bruits du coeur sont réguliers sans souffle.	Les bruits du coeur sont réguliers sans souffle	0.0	47.0	True	HP:0030148	True
+chu50_fr_21	12	Il peine à monter et descendre les escaliers en alternant les pieds.				False		False
+chu50_fr_43	11	Elle n'a pas présenté d'hypoglycémies en période néonatale.	Elle n'a pas présenté d'hypoglycémies en période néonatale	0.0	58.0	True	HP:0001998	True
+chu50_fr_02	20	L’hypothèse d’une trisomie 21 avait été évoquée en consultation de génétique pendant la grossesse.				False		False
+chu50_fr_13	9	Il travaille actuellement en tant que responsable évènementiel pour le compte du club CSP de Limoges.				False		False
+chu50_fr_14	5	Histoire de la grossesse :				False		False
+chu50_fr_45	8	Après un arrêt progressif des traitements, il n'a plus de traitement antiépileptique depuis 2016. Sur le plan du développement psychomoteur : la station assise a été acquise vers 12 mois.	la station assise a été acquise vers 12 mois	142.0	44.0	False	HP:0025336	True
+chu50_fr_39	10	était née à 42 SA avec nécessité d'une aide par ventouse.	était née à 42 SA	0.0	17.0	False	HP:0031169	True
+chu50_fr_07	12	L’examen neurologique ce jour retrouve une cyphose prononcée et retrouve également des éléments dyspraxiques.	éléments dyspraxiques	87.0	21.0	False	HP:0011098	True
+chu50_fr_16	29	Sur le plan morphologique				False		False
+chu50_fr_05	11	Tag pretragien à droite.	Tag pretragien	0.0	14.0	False	HP:0000384	True
+chu50_fr_16	19	complément				False		False
+chu50_fr_39	15	Elle avait également une insuffisance rénale fonctionnelle qui a régressé. À ce moment-là, l'EEG était revenu normal ainsi que l'IRM cérébrale. Par la suite, les acquisitions motrices ont été légèrement décalées avec une tenue assise acquise à l'âge de 10 mois et une marche acquise à l'âge de 20 mois.	EEG était revenu normal ainsi que l'IRM cérébrale	93.0	49.0	True	HP:0001250	True
+chu50_fr_10	13	PN= 4,40 kg				False		False
+chu50_fr_12	3	Anon LOUKA, né le 15/02/2016 âgé de 9 ans et 3 mois dans le cadre d’un retard global des acquisitions associé à des particularités morphologiques.	retard global des acquisitions	71.0	30.0	False	HP:0001263	True
+chu50_fr_17	17	Un bilan neuropsychologique est prévu devant une grande labilité attentionnelle par ailleurs. À l'âge de 6 ans Nénuphrine a présenté une première crise tonicoclonique généralisée, avec pointes-ondes focales temporales droites intercritiques à l'EEG faisant suspecter une lésion focale.	sans signe de Babinski	247.0	22.0	True	HP:0003487	True
+chu50_fr_27	13	Il a effectué un bilan radiographique ce jour qui va être interprété ultérieurement mais je regarde déjà, il présente de cols fémoraux un peu courts, un élargissement interpédiculaire en lombaire qui me parait correcte, pas de déformation de Madelung de façon évidente.	pas de déformation de Madelung	220.0	30.0	True	HP:0003067	True
+chu50_fr_12	23	L’examen néonatal était, semble-t-il sans particularité.				False		False
+chu50_fr_32	3	Il avait été retrouvé chez sa fille une mutation pathogène dans le gène FLT4 associé à ces lymphoedèmes congénitaux de transmission dominante autosomique appelé maladie de Milroy.	lymphoedèmes congénitaux	91.0	24.0	False	HP:0001004	True
+chu50_fr_22	15	J'ai également prescrit un bilan neuropsychologique complet pour mieux caractériser ses difficultés cognitives.				False		False
+chu50_fr_38	26	Les parents s’interrogent également sur le risque de récidive dans l’hypothèse d’une nouvelle grossesse, je leur explique qu’en l’absence de diagnostic génétique clair il est difficile de leur faire un conseil génétique adapté Au total : Séquence de Pierre Robin avec rétrognathisme et glossoptose entraînant des difficultés respiratoires et alimentaires.	rétrognathisme	268.0	15.0	False	HP:0000278	True
+chu50_fr_07	18	Ce bilan a été complété par un bilan endocrinien ainsi qu’une radiographie d’âge osseux.				False		False
+chu50_fr_38	3	elle aurait présenté une perte d’audition dans l’enfance suite des otites à répétition avec une bonne récupération aujourd’hui.	perte d’audition dans l’enfance	25.0	31.0	False	HP:0001730	True
+chu50_fr_42	11	Un bilan biologique sanguin a été réalisé le 08 mars dernier au CHU de Rennes et montrait : ionogramme sanguin normal, TSH normale, créatinine augmentée à 92 μmol/l, numération formule sanguine satisfaisante mais une discrète leucopénie à 4000 leucocytes/mm³. Michael présente un trouble du développement intellectuel associé à un trouble du spectre de l'autisme.	créatinine augmentée à 92 μmol/l	132.0	32.0	False	HP:0012100	True
+chu50_fr_06	0	Mon Cher Confrère				False		False
+chu50_fr_12	24	Progressivement, on note que Anon a un décalage des acquisitions motrices. A 21 mois : N’a pas acquis la marche libérée, peut se déplacer en s’agrippant.	A 21 mois : N’a pas acquis la marche libérée	75.0	44.0	False	HP:0031936	True
+chu50_fr_05	22	Je l’adresse aussi en consultation de cardiologie pour bilan et ETT, compte-tenu du souffle.				False		False
+chu50_fr_16	20	vers 24 mois mais garde quelques difficultés dans l'articulation de certaines consonnes	difficultés à se focaliser sur les différentes activités	62.0	56.0	False	HP:0031987	True
+chu50_fr_04	14	Il a redoublé son CE2.				False		False
+chu50_fr_14	15	présentent une hypotonie, une hyporéactivité et des difficultés de succion et évoluent vers une hypertonie avec quasi-absence de contact.	difficultés de succion	52.0	22.0	False	HP:0002033	True
+chu50_fr_34	7	Il est en effet important de savoir s'il s'agit d'une trisomie 13 accidentelle habituelle, une trisomie libre ou s'il s'agit d'une très rare translocation impliquant le chromosome 13. D'autre part, une échographie morphologique a été réalisée récemment par le Dr M. ÉDOUARD qui retrouve bien des malformations évocatrices de trisomie 13 : holoprosencéphalie semi lobaire ou lobaire, cardiopathie de type probablement ventricule droit à double issue, petite CIV associée, anomalie des oreilles, microphtalmie au moins unilatérale, fente labiopalatine bilatérale.	holoprosencéphalie semi lobaire ou lobaire	339.0	42.0	False	HP:0002507	True
+chu50_fr_29	6	Eliot évolue de façon tout à fait satisfaisante avec une pratique de sport (vélo de route ;				False		False
+chu50_fr_41	6	Du côté de la maman, pas d’antécédents familiaux significatifs. Quant à Brice, il est né au terme d'une grossesse marquée par un RCIU et la découverte à l'échographie d'une dilatation pyélocalicielle droite.	grossesse marquée par un RCIU	104.0	29.0	False	HP:0001511	True
+chu50_fr_28	28	Sur le plan morphologique, elle présente des oreilles légèrement basses et en rotation postérieure, une ensellure nasale marquée, un ptosis gauche, un palais un peu creux.	oreilles légèrement basses et en rotation postérieure	45.0	53.0	False	HP:0000358	True
+chu50_fr_44	24	L'examen clinique retrouve la plagiocéphalie posturale et de petites particularités morphologiques (pli palmaire unique bilatéral, oreilles légèrement basses implantées, fentes palpébrales orientées en haut et en dehors, philtrum plat et lèvre supérieure fine).	particularités morphologiques	69.0	29.0	False	HP:0001999	True
+chu50_fr_15	11	Nous avons abordé l’évolution souvent sombre de la pathologie et commencé à discuter soins palliatifs.				False		False
+chu50_fr_16	6	Elle termine son CP et la rentrée en septembre prochain est prévue en CE1, toutefois elle ne veut plus retourner à l'école.	asthme	111.0	6.0	False	HP:0002099	True
+chu50_fr_23	3	Celui-ci n'a pas permis d'identifier de variant pathogène ni probablement pathogène pouvant être à l'origine des difficultés ni des malformations d'Alicia.				False		False
+chu50_fr_45	3	Il est né par césarienne.	césarienne	14.0	10.0	False	HP:0011410	True
+chu50_fr_09	15	Les manifestations hémorragiques possibles (épistaxis, hématomes, hémarthroses…), leur implication dans la vie quotidienne et les complications possibles au long cours.	hémarthroses	66.0	12.0	False	HP:0005261	True
+chu50_fr_19	11	Elle ne rapporte pas de vertige, mais des acouphènes permanents. Sur le plan de l'épilepsie, il n'y a plus de crises atoniques depuis l'introduction du Lamictal, mais il existe peut-être des absences persistantes possiblement pluriquotidiennes pour lesquelles nous redemandons un électroencéphalogramme ce jour. Sur le plan social, les dossiers ALD et MDPH sont à jour.	il existe peut-être des absences persistantes possiblement pluriquotidiennes	167.0	76.0	False	HP:0002121	True
+chu50_fr_10	27	La palpation abdominale ne trouve pas de masse ni d’organomégalie. Devant ce tableau de trouble des apprentissages associé à une obésité pédiatrique, nous compléterons le bilan par : - une IRM cérébrale	obésité	129.0	7.0	False	HP:0001513	True
+chu50_fr_22	13	Le frère aîné de Léa, âgé de 11 ans, ne présente aucun signe clinique évocateur et son développement est harmonieux.				False		False
+chu50_fr_38	10	, taille 45 cm (1er p.) et périmètre crânien 33.5 cm (32ème p.).	taille 45 cm (1er p.)	2.0	21.0	False	HP:0003561	True
+chu50_fr_43	5	Le dépistage combiné du premier trimestre pour la trisomie 21 avait montré un risque de 1 sur 69.				False		False
+chu50_fr_41	9	Les premières échographies cardiaques de contrôle étaient jugées normales.				False		False
+chu50_fr_40	25	Je ne manquerai pas de vous tenir au courant de la suite.				False		False
+chu50_fr_28	28	Sur le plan morphologique, elle présente des oreilles légèrement basses et en rotation postérieure, une ensellure nasale marquée, un ptosis gauche, un palais un peu creux.	ptosis gauche	133.0	13.0	False	HP:0007687	True
+chu50_fr_23	7	Elle est actuellement traitée par RISPERIDONE.	hallucinations visuelles et auditives	10.0	37.0	False	HP:0002367	True
+chu50_fr_49	20	– Si ACPA normale, alors on devrait proposer la réalisation d'un exome en trio avec un prélèvement sanguin de chacun des parents. Bien évidemment je vous informerai des résultats ainsi que la famille dans quelques mois. Dans l'intervalle merci de me tenir au courant de l'évolution de ce jeune homme. Bien cordialement.				False		False
+chu50_fr_23	18	Au total, le séquençage d’exome n’a pas permis d’identifier d’autre cause aux difficultés et malformations présentées par Eulalie. Bilan du surpoids à prévoir, enfant adressée en endocrinopédiatrie.	surpoids	99.0	9.0	False	HP:0025502	True
+chu50_fr_24	24	Je recontacterai donc la famille à réception du résultat de génétique et des examens complémentaires et je pense que nous nous reverrons dans quelques mois.				False		False
+chu50_fr_30	6	- Il est repéré d'emblée des pieds-bots varus équin et une malformation de l’oreille droite, à type de microtie.	pieds-bots varus équin	29.0	22.0	False	HP:0008110	True
+chu50_fr_20	13	- Suspicion de maladie de Fabry paucisymptomatique, sans confirmation moléculaire, avec acroparesthésies invalidantes depuis l’école primaire (limitation des activités physiques, difficultés au travail, douleurs majorées à la chaleur), et quelques douleurs digestives.	douleurs digestives	248.0	19.0	False	HP:0002027	True
+chu50_fr_43	32	tous les 3 mois à la recherche				False		False
+chu50_fr_37	4	Au niveau médical, il n'y a plus de crise d'épilepsie et tu es entrain de diminuer progressivement les traitements.	crise d'épilepsie	36.0	17.0	False	HP:0001250	True
+chu50_fr_37	17	- Je contacte le laboratoire de génétique moléculaire pour avoirs les derniers résultats des études déjà lancées.				False		False
+chu50_fr_46	31	Discussion et conclusion :				False		False
+chu50_fr_38	15	Doute sur un possible hypertélorisme. Sur le plan alimentaire, difficultés de succion et déglutition avec régurgitations, entraînant une alimentation par sonde nasogastrique. L’association de ces différents symptômes pose le diagnostic de séquence de Pierre Robin.	hypertélorisme	22.0	14.0	False	HP:0000316	True
+chu50_fr_36	20	Le suivi oculaire paraît correct.				False		False
+chu50_fr_37	6	Un fait un peu nouveau est d'une part un appétit vraiment développé avec peu de satiété et du coup une prise de poids conséquente ayant conduit à une petite obésité stable pour le moment.	un appétit vraiment développé avec peu de satiété	38.0	49.0	False	HP:0002591	True
+chu50_fr_29	7	environ 70 km par semaine).				False		False
+chu50_fr_37	14	Au total, nous échangeons avec la maman sur les éléments suivants :				False		False
+chu50_fr_11	3	La mère, Madame Aï’a NOYONFER née le 20/08/1970 est en bonne santé, bien qu’elle ait des traitements de fond pour l’hypothyroïdie et l’hypertension artérielle.	hypertension artérielle	135.0	23.0	False	HP:0000822	True
+chu50_fr_46	6	Son père est décédé d'un cancer des poumons.	Son père est décédé d'un cancer des poumons	0.0	43.0	False	HP:0100526	True
+chu50_fr_05	20	Suite à la consultation, M. REDUIO est donc prélevé pour le panel Surdités génétiques, qui sera réalisé dans notre laboratoire de génétique moléculaire.				False		False
+chu50_fr_39	7	Elle est file unique.				False		False
+chu50_fr_08	9	elle a eu une scolarité normale.				False		False
+chu50_fr_14	2	Antécédents familiaux : Mme BOSSE est en bonne santé.				False		False
+chu50_fr_08	44	Consoeur, l'assurance de mes salutations les meilleures.				False		False
+chu50_fr_37	10	On note toujours ces particularités morphologiques avec une énophtalmie modérée et des fentes palpébrales un peu étroites en haut et en dehors.	fentes palpébrales un peu étroites en haut et en dehors	87.0	55.0	False	HP:0045025	True
+chu50_fr_19	24	Le consentement est expliqué, signé et un nouveau prélèvement sanguin réalisé chez la patiente.				False		False
+chu50_fr_19	11	Elle ne rapporte pas de vertige, mais des acouphènes permanents. Sur le plan de l'épilepsie, il n'y a plus de crises atoniques depuis l'introduction du Lamictal, mais il existe peut-être des absences persistantes possiblement pluriquotidiennes pour lesquelles nous redemandons un électroencéphalogramme ce jour. Sur le plan social, les dossiers ALD et MDPH sont à jour.	épilepsie	82.0	9.0	False	HP:0001250	True
+chu50_fr_46	24	Elle présente une carnation pâle avec des cheveux blonds, presque cendrés et des yeux bleus ce qui n'est pas le cas de ses parents.	cheveux blonds, presque cendrés	42.0	31.0	False	HP:0002286	True
+chu50_fr_27	23	dont la fille et la petite fille présentent une mutation de signification inconnue dans le gène SHOX, ce gène étant suspecté devant une déformation de Madelung bilatérale chez leur petite-fille. Dans la famille, il ne semble pas que la taille soit très franchement concernée et il est tout à fait également possible que certaines personnes soient porteuses d'une mutation sans avoir de déformation de Madelung ce qui rend difficile les interprétations et les corrélations génotype-phénotype. Néanmoins, il existe quelques arguments chez Mme GADBOIS pour évoquer une déformation de Madelung droite et une atteinte du gène SHOX occasionnant une taille à -2 DS.	déformation de Madelung bilatérale chez leur petite-fille	136.0	57.0	False	HP:0003067	True
+chu50_fr_21	7	Sa compréhension semble meilleure mais reste en-deçà de son âge.	Sa compréhension semble meilleure mais reste en-deçà de son âge	0.0	63.0	False	HP:0011350	True
+chu50_fr_12	36	par : - Une échographie cardiaque à la recherche d’une éventuelle sténose de l’artère pulmonaire/CMH	sténose de l’artère pulmonaire/CMH	66.0	34.0	False	HP:0004415	True
+chu50_fr_39	17	La neuropédiatre notait un retard moteur simple d'évolution favorable sans trouble spécifique à l'âge de 34 mois.	retard moteur	27.0	13.0	False	HP:0001270	True
+chu50_fr_08	30	Elle est suivie en kinésithérapie et en orthophonie, avec une séance de chaque par semaine.	Elle est suivie en kinésithérapie et en orthophonie	0.0	51.0	False	HP:0001270	True
+chu50_fr_04	32	Au total : Diagnostic clinique de maladie de Fabry.				False		False
+chu50_fr_13	31	Les doigts sont longs et fins avec des signes du pouce et du poignet positifs bilatéralement traduisant une arachnodactylie.	avec des signes du pouce et du poignet positifs bilatéralement traduisant une arachnodactylie	30.0	93.0	False	HP:0001166	True
+chu50_fr_41	21	Une étude par puce à ADN (CGH ARRAY) a été lancée pour rechercher un microremaniement chromosomique et un caryotype.				False		False
+chu50_fr_09	20	Les documents (carte hémophile, carte de soins d’urgence, carnet de suivi d’hémophilie…) ont été remis aux parents.				False		False
+chu50_fr_03	10	Il est suivi en psychomotricité 2 fois par semaine, et en orthophonie 1x par semaine.	orthophonie 1x par semaine	58.0	26.0	False	HP:0000750	True
+chu50_fr_25	37	- plus de 6 taches café au lait de diamètre supérieur à 0,6 cm	plus de 6 taches café au lait	2.0	29.0	False	HP:0000957	True
+chu50_fr_46	12	Apgar : 10/10.				False		False
+chu50_fr_25	23	Selon la taille, le nombre et l’emplacement de ces neurofibromes, des complications peuvent survenir.	neurofibromes	51.0	13.0	False	HP:0001067	True
+chu50_fr_34	9	Ils ne souhaitent pas d'acharnement avec une réanimation.				False		False
+chu50_fr_47	0	Cher Confrère, Nous avons rencontré conjointement en consultation de neurogénétique avec le Docteur BARRIÈRE le 22/01/2024 le jeune Antoine				False		False
+chu50_fr_23	13	Palpation abdominale normale.	large tache hypochrome	13.0	22.0	False	HP:0001053	True
+chu50_fr_12	11	Pas d’autre antécédent notable dans cette branche.				False		False
+chu50_fr_19	11	Elle ne rapporte pas de vertige, mais des acouphènes permanents. Sur le plan de l'épilepsie, il n'y a plus de crises atoniques depuis l'introduction du Lamictal, mais il existe peut-être des absences persistantes possiblement pluriquotidiennes pour lesquelles nous redemandons un électroencéphalogramme ce jour. Sur le plan social, les dossiers ALD et MDPH sont à jour.	il n'y a plus de crises atoniques	93.0	33.0	True	HP:0010819	True
+chu50_fr_05	18	Si c’est une pathologie autosomique dominante, le risque sera de 50%.				False		False
+chu50_fr_47	23	Pas d'anomalie à l'examen endobuccal et notamment pas d'anomalie dentaire.	pas d'anomalie dentaire	50.0	23.0	True	HP:0000164	True
+chu50_fr_04	13	Il a aussi un traitement de fond pour de l’asthme.	asthme	43.0	6.0	False	HP:0002099	True
+chu50_fr_29	10	En ce qui concerne M. Bernard PETRIE, il n'a aucun antécédent médicochirurgical particulier, notamment pas de pneumothorax ou d'anomalie ophtalmologique en dehors d'une myopie simple. À l'examen ce jour on ne retrouve pas non plus de signe squelettique très évocateur d'un syndrome de Marfan avec notamment une absence d'anomalie du sternum, pas d'arachnodactylie, pas de signe du poignet ou du pouce, pas d'anomalie au niveau des pieds de la peau et de la bouche (luette normale).	pas de pneumothorax	103.0	19.0	True	HP:0002107	True
+chu50_fr_11	6	, nous avons peu d’éléments concernant son histoire périnatale : Une grossesse et un accouchement sans particularité à 38 SA ; poids de naissance de 3,2 kg, taille de naissance à 52 cm. Vers l'âge de 12 mois, elle présente un malaise avec cyanose dans un contexte fébrile puis apparition des premières crises d'épilepsie avec clonies des paupières et chute de la tête.	crises d'épilepsie avec clonies des paupières et chute de la tête	302.0	65.0	False	HP:0002266	True
+chu50_fr_26	4	Il n'a pas d'enfant, il a deux soeurs en bonne santé, dont une qui présente un diabète de type I et qui a 3 enfants en bonne santé ;	diabète de type I	79.0	17.0	False	HP:0100651	True
+chu50_fr_11	14	Actuellement, elle est sous Cannabidiol depuis 2 mois, qui semble donner quelques résultats prometteurs, la sévérité et la fréquence des crises semblent en diminution.				False		False
+chu50_fr_26	8	-même n'a pas d'antécédent notable en dehors d'allergies et d'un asthme.	asthme	65.0	6.0	False	HP:0002099	True
+chu50_fr_46	11	Concernant Leanna, elle est née à 38 SA avec un poids de naissance de 2.95 kg (44e p), taille : 47.5 cm (33e p), PC : 34 cm (58e p),	poids de naissance de 2.95 kg (44e p), taille : 47.5 cm (33e p), PC : 34 cm (58e p)	48.0	83.0	True	HP:0001511	True
+chu50_fr_29	10	En ce qui concerne M. Bernard PETRIE, il n'a aucun antécédent médicochirurgical particulier, notamment pas de pneumothorax ou d'anomalie ophtalmologique en dehors d'une myopie simple. À l'examen ce jour on ne retrouve pas non plus de signe squelettique très évocateur d'un syndrome de Marfan avec notamment une absence d'anomalie du sternum, pas d'arachnodactylie, pas de signe du poignet ou du pouce, pas d'anomalie au niveau des pieds de la peau et de la bouche (luette normale).	absence d'anomalie du sternum	311.0	29.0	True	HP:0000766	True
+chu50_fr_12	13	Je ne note pas de particularité morphologique par ailleurs.	Je ne note pas de particularité morphologique par ailleurs	0.0	58.0	True	HP:0001999	True
+chu50_fr_03	6	L’épilepsie reste difficilement contrôlable malgré une triple thérapie antiépileptique.	épilepsie	2.0	9.0	False	HP:0001250	True
+chu50_fr_20	30	Elle présente essentiellement des acroparesthésies invalidantes.	acroparesthésies	34.0	17.0	False	HP:0031006	True
+chu50_fr_14	4	M. HOUDE est lui aussi en bonne santé.				False		False
+chu50_fr_14	25	Je reste à votre disposition et à celle du couple pour toute question supplémentaire. Bien confraternellement.				False		False
+chu50_fr_14	16	Les malformations sont fréquentes : coeur (> 90% des cas), tube digestif (atrésie oesophagienne, malformation anorectale), rein et voies urinaires (hydronéphrose, agénésie uni- ou bilatérale), yeux (microphtalmie, colobome), … Le couple souhaite s'orienter vers une demande d'interruption médicale de grossesse.	malformation anorectale	96.0	24.0	False	HP:0012732	True
+chu50_fr_02	25	Je retrouve quelques traits morphologiques particuliers, avec fentes palpébrales en haut et en dehors, petite bouche, pli palmaire transverse unique bilatéral.	fentes palpébrales en haut et en dehors	62.0	39.0	False	HP:0000582	True
+chu50_fr_11	16	Pas de dysmorphie particulière.	Pas de dysmorphie particulière	0.0	30.0	True	HP:0001999	True
+chu50_fr_06	14	L’association diabète/surdité/myopathie fait soulever l’hypothèse d’une pathologie mitochondriale de type MIDD/MELAS.	myopathie	30.0	9.0	False	HP:0003198	True
+chu50_fr_46	4	Le papa a 2 frères et 1 soeur, pour lesquels il ne déclare pas de difficultés scolaires.				False		False
+chu50_fr_01	1	Antécédents familiaux :				False		False
+chu50_fr_42	11	Un bilan biologique sanguin a été réalisé le 08 mars dernier au CHU de Rennes et montrait : ionogramme sanguin normal, TSH normale, créatinine augmentée à 92 μmol/l, numération formule sanguine satisfaisante mais une discrète leucopénie à 4000 leucocytes/mm³. Michael présente un trouble du développement intellectuel associé à un trouble du spectre de l'autisme.	leucopénie	226.0	10.0	False	HP:0001882	True
+chu50_fr_45	17	Les fentes palpébrales sont horizontales.	Les fentes palpébrales sont horizontales	0.0	40.0	True	HP:0008050	True
+chu50_fr_35	21	ne s'intégrant pas dans un syndrome spécifique au premier abord. Pour pouvoir avancer, je demande dans un premier temps une étude par ACPA ou CGH ARRAY pour rechercher un microremaniement chromosomique.				False		False
+chu50_fr_32	8	Elle est donc probablement symptomatique vraiment a minima pour cette maladie.				False		False
+chu50_fr_45	19	On note un philtrum court, des lèvres charnues, il n'y a pas d'anomalie des extrémités, le rachis est rectiligne.	il n'y a pas d'anomalie des extrémités	48.0	38.0	False	HP:0040064	True
+chu50_fr_07	3	Zoé a pour antécédent des bronchiolites et des otites à répétition.	otites à répétition	47.0	19.0	False	HP:0000403	True
+chu50_fr_47	18	Il a aussi bénéficié de bilans neuropsychologiques confirmant le décalage dans les acquisitions.	bilans neuropsychologiques confirmant le décalage dans les acquisitions	24.0	71.0	False	HP:0001263	True
+chu50_fr_27	11	Mr GADBOIS a comme antécédent une fracture tassement lombaire sur accident de voiture et une fracture de la cheville plus ancienne opérée.				False		False
+chu50_fr_06	12	La sensibilité tactile, douloureuse, et vibratoire est normale.	La sensibilité tactile, douloureuse, et vibratoire est normale	0.0	62.0	True	HP:0000763	True
+chu50_fr_50	15	– Des anomalies de segmentation avec hémi-vertèbres T6 et T7 et une paire de côte surnuméraire. Depuis la sortie de maternité, l'évolution est globalement satisfaisante tant du point de vue de la croissance staturopondérale et de l'évolution psychomotrice. À l'examen	paire de côte surnuméraire	69.0	26.0	False	HP:0005815	True
+chu50_fr_11	25	La famille a bien compris qu'il n'y aurait pas de modification significative dans la prise en charge mais pourra permettre de préciser le conseil génétique.				False		False
+chu50_fr_46	15	Les premiers mois de vie il semble que les biberons étaient difficiles nécessitant une stimulation.	biberons étaient difficiles nécessitant une stimulation	43.0	55.0	False	HP:0008872	True
+chu50_fr_18	10	Picasso est né à 39 SA avec une taille et un poids inférieur au 3e p et un PCN conservé au 10e p. Apgar 2/2/3 sur dysplasie thoracique avec côtes courtes.	côtes courtes	140.0	13.0	False	HP:0000773	True
+chu50_fr_27	6	Cette duplication a ensuite été retrouvé chez la maman de Gabrielle.				False		False
+chu50_fr_41	12	Il a bénéficié de séances de kinésithérapie et de psychomotricité.	Il a bénéficié de séances de kinésithérapie et de psychomotricité	0.0	65.0	False	HP:0001263	True
+chu50_fr_10	16	L'évolution des acquisitions psychomotrices s'est faite avec un décalage avec une marche acquise à 18 mois et pas de langage à l'âge de 3 ans.	pas de langage à l'âge de 3 ans	110.0	31.0	False	HP:0001344	True
+chu50_fr_49	4	– Un accouchement par césarienne avec, comme vous le précisez, des mensurations normales, un Apgar 8/9 puis une détresse respiratoire ayant nécessité de l'oxygène rapidement résolutive.	césarienne	22.0	10.0	False	HP:0011410	True
+chu50_fr_42	14	Il est en attente d'une place en IME.	Il est en attente d'une place en IME	0.0	36.0	False	HP:0001249	True
+chu50_fr_18	17	L'IRM cérébrale montre un corps calleux fin et court, ainsi qu'un défaut global de gyration avec gradient antéropostérieur.	corps calleux fin et court	25.0	26.0	False	HP:0002079	True
+chu50_fr_03	19	Pas de particularité morphologique notable.	Pas de particularité morphologique notable	0.0	42.0	True	HP:0001999	True
+chu50_fr_49	4	– Un accouchement par césarienne avec, comme vous le précisez, des mensurations normales, un Apgar 8/9 puis une détresse respiratoire ayant nécessité de l'oxygène rapidement résolutive.	mensurations normales	67.0	21.0	True	HP:0001511	True
+chu50_fr_25	5	Pas de trouble cognitif connu. La maman	Pas de trouble cognitif connu	0.0	29.0	True	HP:0012759	True
+chu50_fr_48	4	Son acuité visuelle se situe autour de 2/10ème.	Son acuité visuelle se situe autour de 2/10ème	0.0	46.0	False	HP:0000505	True
+chu50_fr_44	11	La propreté diurne et nocturne n'est pas acquise.				False		False
+chu50_fr_18	23	À noter par ailleurs un hypertélorisme marqué, des oreilles mal ourlées en rotation postérieure, une pointe du nez bulbeuse, un philtrum court, une lèvre supérieure fine.	lèvre supérieure fine	147.0	21.0	False	HP:0000219	True
+chu50_fr_12	37	- Un bilan biologique avec NFS + plaquettes J’explique le consentement pour analyse des caractéristiques génétiques constitutionnelles et les implications de en cas de résultat positif.				False		False
+chu50_fr_06	13	Il y a un ptosis bilatéral sans ophtalmoplégie associée.	ophtalmoplégie	32.0	14.0	True	HP:0000602	True
+chu50_fr_47	33	Nous précisions qu'habituellement, les patients ne présentent pas de trouble du neurodéveloppement et qu'il est donc difficile d'affirmer qu'il existe un lien entre cette malformation et le décalage des acquisitions observé. Dans ce contexte est prescrit ce jour une IRM cérébrale et une CGH-Array.				False		False
+chu50_fr_37	9	L'IMC est donc à 23,5.	L'IMC est donc à 23,5	0.0	21.0	False	HP:0004324	True
+chu50_fr_33	8	Elle présentait des pieds varus réductibles traités simplement par kinésithérapie.	pieds varus réductibles	20.0	23.0	False	HP:0001776	True
+chu50_fr_25	22	Recklinghausen est une maladie qui se manifeste par des taches café au lait sur la peau et des tumeurs situées le long des nerfs, appelés neurofibromes.	neurofibromes	138.0	13.0	False	HP:0001067	True
+chu50_fr_25	9	Gaston est né à 36 SA par césarienne, macrosome avec un poids de naissance à 3950 g (99e p), une taille de naissance à 52.5 cm (99e p) et un PC de naissance à 35.5 cm (94e p). Apgar 7-9 à la naissance, nécessité de ventilation transitoire.	est né à 36 SA	7.0	14.0	False	HP:0001622	True
+chu50_fr_24	22	Nous n'allons pas attendre ce résultat pour organiser différents examens, à savoir une IRM de la charnière et une consultation en chirurgie orthopédique pour discuter d'un éventuel corset de de station assise. En parallèle, je leur joins une ordonnance pour consulter un ORL afin de s'assurer de l'absence de nécessité de désobstruction des voies aériennes supérieures. Et je leur conseille également de contacter le CAMSP afin qu'une équipe puisse s'organiser autour du suivi de Vallis avec peut-être notamment de la kinésithérapie ou de la psychomotricité.				False		False
+chu50_fr_40	8	Dans cette famille, on note qu'une soeur est décédée au troisième jour de vie subitement et que deux autres soeurs sont en bonne santé mais de petite taille.	petite taille	143.0	13.0	False	HP:0004322	True
+chu50_fr_33	6	Elle était née à 40SA et 1 jour avec un poids de 3kg5 (56e p), une taille de 50.2cm (48e p) et déjà un petit périmètre crânien à 32,1cm (2e p).	Elle était née à 40SA et 1 jour	0.0	31.0	True	HP:0001622	True
+chu50_fr_45	15	Lors d’un contrôle IRM réalisé en 2006 au décours d'un mal épileptique, il a été mis en évidence une polymicrogyrie étendue périsylvienne gauche. À l'examen clinique ce jour, il pèse 24 kg (<- 2 DS), mesure 129,5 cm (-2.5 DS).	il pèse 24 kg (<- 2 DS), mesure 129,5 cm (-2.5 DS)	175.0	50.0	False	HP:0001530	True
+chu50_fr_30	8	- Elle va évoluer avec une déficience globale puisque la marche est acquise à 27 mois, le langage est composé de petites phrases avec quelques mots et des gestes assez stéréotypés.	marche est acquise à 27 mois	57.0	28.0	False	HP:0031936	True
+chu50_fr_49	17	Au total, il apparaît pertinent de poursuivre les investigations en proposant : –				False		False
+chu50_fr_47	29	Sur le plan neurologique, les réflexes ostéotendineux sont perçus et symétriques, pas de déficit sensitivomoteur.	les réflexes ostéotendineux sont perçus et symétriques	25.0	55.0	True	HP:0031826	True
+chu50_fr_07	16	La puberté n’a pas démarré. À l’issu de cette consultation				False		False
+chu50_fr_44	5	Il s’agit du 1er et unique enfant d’un couple non apparenté.				False		False
+chu50_fr_20	24	Il n'y a pas de trouble oculomoteur, pas de signe d'ataxie.	pas de signe d'ataxie	37.0	21.0	True	HP:0001251	True
+chu50_fr_25	14	, PC = 51 cm (moyenne).				False		False
+chu50_fr_16	23	Les premières inquiétudes remontent à ses 26 mois où la crèche mentionnait un comportement plutôt solitaire associé à une agitation importante et des difficultés à se focaliser sur les différentes activités.	L'examen de la marche est normal	187.0	32.0	True	HP:0001288	True
+chu50_fr_04	26	. Les douleurs dans les extrémités qu’il décrit font évoquer des acroparesthésies.	acroparesthésies	65.0	16.0	False	HP:0031006	True
+chu50_fr_20	21	Elle n'a pas de déficit sensitivomoteur.	pas de déficit sensitivomoteur	9.0	30.0	True	HP:0000763	True
+chu50_fr_36	0	Chère Consoeur,				False		False
+chu50_fr_03	14	Poids -1 DS.				False		False
+chu50_fr_38	24	Sur le plan génétique, j’explique aux parents de Valeria que nous pouvons commencer les analyses génétiques par la réalisation d'une CGH Array, ce qu'ils acceptent.				False		False
+chu50_fr_17	4	Il mentionne que sa mère aurait été épileptique dans son enfance, et aurait été traité toute sa vie.	elle n'associerait pas encore les mots	70.0	38.0	False	HP:0000750	True
+chu50_fr_40	17	On remarque un léger pectus excavatum, une morphologie compatible avec le syndrome de Noonan, avec une forme du visage en triangle inversé, un hypertélorisme, des sillons nasogéniens proéminents, et un livedo au niveau du tronc.	forme du visage en triangle inversé	103.0	35.0	False	HP:0001999	True
+chu50_fr_43	2	Il s'agit de la 3e enfant d'une fratrie de trois.				False		False
+chu50_fr_50	34	– Refaire un point évolutif en génétique en début d'année prochaine. Dans l'intervalle merci de me tenir au courant de son évolution et bien amicalement.				False		False
+chu50_fr_39	12	L'APGAR était à 2 puis 4.				False		False
+chu50_fr_09	4	Artem rapportent des ecchymoses spontanées sur les membres et des pétéchies.	pétéchies	66.0	9.0	False	HP:0000967	True
+chu50_fr_02	24	Petite hypotonie axiale.	hypotonie axiale	7.0	16.0	False	HP:0008936	True
+chu50_fr_41	6	Du côté de la maman, pas d’antécédents familiaux significatifs. Quant à Brice, il est né au terme d'une grossesse marquée par un RCIU et la découverte à l'échographie d'une dilatation pyélocalicielle droite.	dilatation pyélocalicielle droite	173.0	33.0	False	HP:0100581	True
+chu50_fr_29	4	pour un avis génétique après la découverte d'une dilatation de l'aorte ascendante. À noter que j'avais déjà vu son fils Eliot en 2023 suite à la mise en évidence de façon un peu fortuite d'une discrète dilatation aortique au niveau du sinus de Valsalva mesurée selon sa dernière échographie en janvier 2024 à 36 mm soit un Z-score (selon CAMPENS) à +2,7, soit relativement stable et ne nécessitant pas actuellement de traitement par bêtabloquant. À l'époque je n'avais pas repéré d'élément clinique, notamment squelettique, en faveur d'un syndrome de Marfan.	dilatation aortique au niveau du sinus de Valsalva	202.0	50.0	False	HP:0004942	True
+chu50_fr_11	1	Mme NOYONFER est la 2ème enfant d'une fratrie de trois avec deux frères adultes actuellement bonne santé.				False		False
+chu50_fr_20	13	- Suspicion de maladie de Fabry paucisymptomatique, sans confirmation moléculaire, avec acroparesthésies invalidantes depuis l’école primaire (limitation des activités physiques, difficultés au travail, douleurs majorées à la chaleur), et quelques douleurs digestives.	acroparesthésies	88.0	16.0	False	HP:0031006	True
+chu50_fr_31	2	Il a déjà bénéficié d'un bilan comprenant un caryotype haute résolution qui était normal.				False		False
+chu50_fr_09	5	La maman d’				False		False
+chu50_fr_08	17	Sa mère est en bonne santé.				False		False
+chu50_fr_08	19	Le couple n’est pas apparenté. Antécédents personnels : Grossesse sans particularité.				False		False
+chu50_fr_30	8	- Elle va évoluer avec une déficience globale puisque la marche est acquise à 27 mois, le langage est composé de petites phrases avec quelques mots et des gestes assez stéréotypés.	gestes assez stéréotypés	155.0	24.0	False	HP:0000733	True
+chu50_fr_28	32	Au total : Amédée est une jeune fille de 2 ans et 9 mois présentant l'association d'un retard staturopondéral post-natal inexpliqué, avec hexadactylie post-axiale aux quatre membres ainsi qu'un discret décalage des acquisitions psychomotrices.	hexadactylie post-axiale aux quatre membres	138.0	43.0	False	HP:0001161	True
+chu50_fr_43	16	Macroglossie avec protrusion linguale.	protrusion linguale	18.0	19.0	False	HP:0010808	True
+chu50_fr_20	17	- Échographie cardiaque normale en 2023	Échographie cardiaque normale	2.0	29.0	True	HP:0001627	True
+chu50_fr_44	9	Lucas a présenté une plagiocéphalie posturale en lien avec un torticolis rééduqué par kinésithérapie.	torticolis	62.0	10.0	False	HP:0005988	True
+chu50_fr_12	22	Apgar 8-10.				False		False
+chu50_fr_14	16	Les malformations sont fréquentes : coeur (> 90% des cas), tube digestif (atrésie oesophagienne, malformation anorectale), rein et voies urinaires (hydronéphrose, agénésie uni- ou bilatérale), yeux (microphtalmie, colobome), … Le couple souhaite s'orienter vers une demande d'interruption médicale de grossesse.	atrésie oesophagienne	74.0	21.0	False	HP:0002032	True
+chu50_fr_17	12	Elle est née à terme à 39 SA avec des mensurations dans la norme.				False		False
+chu50_fr_40	15	Le diagnostic de syndrome de Noonan avait été évoqué cliniquement vers l'âge de 8 ans devant une morphologie évocatrice, une petite taille, des difficultés d'apprentissage et des difficultés d'alimentation.	difficultés d'alimentation	179.0	26.0	False	HP:0011968	True
+chu50_fr_50	22	Sur l'abdomen : un mamelon surnuméraire à droite.	mamelon surnuméraire	20.0	20.0	False	HP:0002558	True
+chu50_fr_43	7	Elle est née à 41 semaines d'aménorrhée par césarienne au poids de 3550 g (61ème p.), à la taille de 51 cm (67ème p.) et avec un périmètre crânien de 35 cm (61ème p.).	poids de 3550 g (61ème p.), à la taille de 51 cm (67ème p.) et avec un périmètre crânien de 35 cm (61ème p.)	58.0	108.0	True	HP:0001511	True
+chu50_fr_04	31	Je le reverrais dès réception de la confirmation pour la mise en place du projet thérapeutique.				False		False
+chu50_fr_50	8	Les mensurations étaient de 2,7 kg (51e p)	Les mensurations étaient de 2,7 kg (51e p) pour une taille de 46 cm (28e p), et un périmètre crânien à 33.8 cm (65e p)	0.0	118.0	True	HP:0001511	True
+chu50_fr_20	33	Nous restons d'ici cette date bien disposition pour tout renseignement complémentaire. Bien cordialement,				False		False
+chu50_fr_39	18	Elle bénéficie actuellement d'un suivi en psychomotricité et en orthophonie.				False		False
+chu50_fr_42	18	Pas d'anomalie des extrémités.	Pas d'anomalie des extrémités	0.0	29.0	True	HP:0040064	True
+chu50_fr_25	40	Je reste bien entendu disponible dans l'intervalle pour toute question. Bien cordialement,				False		False
+chu50_fr_43	25	Pas de hernie ombilicale ni de diastasis des droits.	Pas de hernie ombilicale	0.0	24.0	True	HP:0001537	True
+chu50_fr_44	10	La kinésithérapie a ensuite été reprise à 12 mois devant le décalage moteur.	décalage moteur	60.0	15.0	False	HP:0001270	True
+chu50_fr_28	29	La statique rachidienne semble normale.	La statique rachidienne semble normale	0.0	38.0	True	HP:0000925	True
+chu50_fr_02	25	Je retrouve quelques traits morphologiques particuliers, avec fentes palpébrales en haut et en dehors, petite bouche, pli palmaire transverse unique bilatéral.	petite bouche	103.0	13.0	False	HP:0000160	True
+chu50_fr_13	20	Je prescris afin de compléter le bilan :				False		False
+chu50_fr_03	26	Je reste à votre disposition pour toute question supplémentaire. Bien confraternellement,				False		False
+chu50_fr_26	13	Il présentait un déficit de l'abduction de l'épaule à 90°.	Il présentait un déficit de l'abduction de l'épaule à 90°	0.0	57.0	False	HP:0033475	True
+chu50_fr_01	6	Elle est ingénieure.				False		False
+chu50_fr_16	32	La statique rachidienne semble normale.				False		False
+chu50_fr_08	36	Les réflexes sont présents et symétriques.	Les réflexes sont présents et symétriques	0.0	41.0	True	HP:0031826	True
+chu50_fr_17	23	A l'examen neurologique, ses réflexes ostéotendineux sont vifs de façon isolée, sans clonus de cheville ni signe de Babinski.				False		False
+chu50_fr_29	12	Son échographie récente met en évidence une mesure au niveau des Valsalva normale à 39 mm mais une légère dilatation de l'aorte ascendante à 44 mm soit un Z-score (selon CAMPENS) à +3.4.	dilatation de l'aorte ascendante	106.0	32.0	False	HP:0004970	True
+chu50_fr_03	1	Marc HIERT, né le 08/10/2023, accompagné de ses deux parents, pour suivi d’une encéphalopathie épileptique néonatale non étiquetée. Pour rappel, Marc est suivi depuis la période néonatale pour une épilepsie sévère, s’étant déclarée dès 2 jours de vie, et pharmaco-résistante.	encéphalopathie épileptique néonatale	79.0	37.0	False	HP:0200134	True
+chu50_fr_04	22	Pas de déficit moteur ou sensitif.	Pas de déficit moteur ou sensitif	0.0	33.0	True	HP:0007002	True
+chu50_fr_24	20	Je rencontre ce jour Vallis qui présente des signes évocateurs d'achondroplasie.				False		False
+chu50_fr_25	7	Il n'y a donc pas d'argument pour qu'elle soit atteinte d'une neurofibromatose de type 1. D'une première union de la maman, Gaston a 2 demi-soeurs qui ne présenterait pas de tache café au lait. Concernant Gaston, la grossesse a été marquée par un diabète traité avec un équilibre a priori obtenu en cours de grossesse.	2 demi-soeurs qui ne présenterait pas de tache café au lait	133.0	59.0	True	HP:0000957	True
+chu50_fr_28	30	Par ailleurs l'abdomen est souple dépressible et indolore.				False		False
+chu50_fr_41	0	Cher Confrère, Chère Consoeur, J'ai fait la connaissance du jeune Brice BLANC né le 13.02.2018, 3 ans et demi, adressé pour une sténose supra-valvulaire aortique dans un contexte syndromique possible.	sténose supra-valvulaire aortique	128.0	33.0	False	HP:0004381	True
+chu50_fr_48	3	Il n'y a pas d'antécédent très spécifique dans la famille. M. Osman MEWAEL présente une forme classique d'albinisme oculo-cutané avec une peau blanche, des cheveux blonds très pâles, et une déficience visuelle avec nystagmus.	déficience visuelle	190.0	19.0	False	HP:0000505	True
+chu50_fr_25	31	Il commande la fabrication d’une protéine : la neurofibromine.				False		False
+chu50_fr_17	14	Il n'y a pas eu de pathologie notable dans la période périnatale. Sur le plan psychomoteur, Nénuphrine a fait du quatre pattes à 6 mois, marché à 11 mois, fait du vélo à 3 ans.				False		False
+chu50_fr_12	10	Sa mère est suivie pour un diabète insulino-requérant et son père pour une cirrhose évoluée du foie conséquence d’un éthylisme chronique.	cirrhose	75.0	8.0	False	HP:0001394	True
+chu50_fr_02	22	Je vois donc Louise à 2 jours de vie.				False		False
+chu50_fr_17	15	Concernant son langage, elle aurait fait ses premiers mots un peu tardivement vers 18 mois, plus tôt que sa jeune soeur toutefois.				False		False
+chu50_fr_50	32	Des radiographies osseuses vers l'âge d’un an.				False		False
+chu50_fr_24	16	Un flessum spontané au niveau des hanches mais qui est réductible.	flessum spontané au niveau des hanches	3.0	38.0	False	HP:0003273	True
+chu50_fr_28	7	Amédée a un demi-frère paternel, Gill né le 14/07/2017, en bonne santé et qui ne présente pas de problème de croissance.	qui ne présente pas de problème de croissance	74.0	45.0	True	HP:0001507	True
+chu50_fr_13	8	Il n’a pas d’antécédent ophtalmologique ou cardiaque particulier (pas de notion d’ETT).				False		False
+chu50_fr_38	13	Bascule majeure de l’épiglotte en arrière sur tableau de laryngomalacie expliquant les épisodes de désaturation. Sur le plan ophtalmologique, pas de myopie forte ou autre	pas de myopie	142.0	13.0	True	HP:0000545	True
+chu50_fr_27	25	Je reste à la disposition de Mr et Mme GADBOIS en cas de besoin. Bien confraternellement.				False		False
+chu50_fr_06	3	- une hypercholestérolémie,	hypercholestérolémie	6.0	20.0	False	HP:0003124	True
+chu50_fr_38	16	Ce jour, je rencontre Valeria dans le cadre de son hospitalisation en néonatalogie. À l’examen clinique ce jour (11 jours), Valeria mesure 47 cm, pèse 2750 g, PC 33.5 cm.				False		False
+chu50_fr_23	1	J'avais expliqué à la famille que cette particularité chromosomique peut en partie seulement expliquer les difficultés d'Eulalie mais n'est habituellement pas associé à des troubles de la même sévérité que ce qu'elle présente, et n'explique a priori pas l'hypoplasie vermienne, ni la scoliose malformative (sur hémi vertèbre thoracique).	hypoplasie vermienne	216.0	20.0	False	HP:0001320	True
+chu50_fr_43	6	Le diagnostic prénatal non invasif était revenu négatif pour les trisomie 13, 18 et 21.				False		False
+chu50_fr_09	9	Le bilan d’hémostase se révèle perturbé.	Le bilan d’hémostase se révèle perturbé	0.0	39.0	False	HP:0001928	True
+chu50_fr_44	24	L'examen clinique retrouve la plagiocéphalie posturale et de petites particularités morphologiques (pli palmaire unique bilatéral, oreilles légèrement basses implantées, fentes palpébrales orientées en haut et en dehors, philtrum plat et lèvre supérieure fine).	pli palmaire unique bilatéral	100.0	29.0	False	HP:0007598	True
+chu50_fr_20	22	Ses réflexes ostéotendineux sont difficilement retrouvés en rotulien mais les réflexes achilléens sont normaux.	réflexes achilléens sont normaux	78.0	32.0	True	HP:0009072	True
+chu50_fr_19	19	Il n'y a pas de roue dentée aux membres supérieurs.	pas de roue dentée	9.0	18.0	True	HP:0002396	True
+chu50_fr_03	4	Marc a maintenant 12 mois.				False		False
+chu50_fr_14	15	présentent une hypotonie, une hyporéactivité et des difficultés de succion et évoluent vers une hypertonie avec quasi-absence de contact.	hypertonie	96.0	10.0	False	HP:0001276	True
+chu50_fr_19	25	Au total : Madame DURE présente une surdité de perception bilatérale évolutive, désormais sévère, associée à une épilepsie traitée depuis l'enfance.	surdité de perception bilatérale évolutive, désormais sévère	36.0	60.0	False	HP:0008619	True
+chu50_fr_33	14	Il n'y a pas d'anomalies des extrémités.	Il n'y a pas d'anomalies des extrémités	0.0	39.0	True	HP:0040064	True
+chu50_fr_25	6	Romaine Rochon née le 21/10/1990 mesure environ 1,65 m. Madame Rochin présenterait une tache sur la cuisse gauche et pas d'autre tâche.				False		False
+chu50_fr_04	30	Je lui explique le suivi à mettre en place.				False		False
+chu50_fr_34	7	Il est en effet important de savoir s'il s'agit d'une trisomie 13 accidentelle habituelle, une trisomie libre ou s'il s'agit d'une très rare translocation impliquant le chromosome 13. D'autre part, une échographie morphologique a été réalisée récemment par le Dr M. ÉDOUARD qui retrouve bien des malformations évocatrices de trisomie 13 : holoprosencéphalie semi lobaire ou lobaire, cardiopathie de type probablement ventricule droit à double issue, petite CIV associée, anomalie des oreilles, microphtalmie au moins unilatérale, fente labiopalatine bilatérale.	cardiopathie de type probablement ventricule droit à double issue	383.0	65.0	False	HP:0001719	True
+chu50_fr_50	6	La naissance a eu lieu au terme de 36 SA, par césarienne, dans le cadre d’une pré-éclampsie maternelle.	césarienne	46.0	10.0	False	HP:0011410	True
+chu50_fr_14	11	Nous avons discuté rapidement des conséquences de la trisomie 18 sur la santé des individus porteurs.				False		False
+chu50_fr_06	14	L’association diabète/surdité/myopathie fait soulever l’hypothèse d’une pathologie mitochondriale de type MIDD/MELAS.	surdité	22.0	7.0	False	HP:0000365	True
+chu50_fr_19	12	Exploration de génétique : L'étude des gènes				False		False
+chu50_fr_13	29	Morphotype longiligne avec T=170cm soit +4DS, E=179cm soit un rapport E/T=1.05 (dolichosténomélie).	dolichosténomélie	80.0	17.0	False	HP:0001519	True
+chu50_fr_42	1	consoeur, Madame, Monsieur, J'ai rencontré à la demande du Dr FOUST en consultation l'enfant				False		False
+chu50_fr_47	17	Il bénéficie d'une prise en charge au CAMSP avec un suivi sur le plan psychologique.				False		False
+chu50_fr_36	17	Il présente toujours les mêmes traits du visage à savoir une tendance à l'énophtalmie, des joues plutôt arrondies, des oreilles dysplasiques.	énophtalmie	74.0	11.0	False	HP:0000490	True
+chu50_fr_42	23	Caryotype demandé ce jour pour confirmation et préciser le mécanisme de survenue.				False		False
+chu50_fr_48	6	Il a présenté quelques épistaxis dans l'enfance et aurait eu quelques saignements digestifs très intermittents.	saignements digestifs	70.0	21.0	False	HP:0002584	True
+chu50_fr_18	11	Un premier examen clinique notait la présence d'une fente palatine postérieure, d'une hexadactylie post axiale bilatérale ainsi que d'une dysmorphie faciale.	fente palatine postérieure	52.0	26.0	False	HP:0000175	True
+chu50_fr_40	15	Le diagnostic de syndrome de Noonan avait été évoqué cliniquement vers l'âge de 8 ans devant une morphologie évocatrice, une petite taille, des difficultés d'apprentissage et des difficultés d'alimentation.	morphologie évocatrice	97.0	22.0	False	HP:0001999	True
+chu50_fr_36	1	J'ai revu en consultation le 17/01/2023 le jeune Julien Lemieux né le 29/11/2012, accompagné de ses deux parents.				False		False
+chu50_fr_10	27	La palpation abdominale ne trouve pas de masse ni d’organomégalie. Devant ce tableau de trouble des apprentissages associé à une obésité pédiatrique, nous compléterons le bilan par : - une IRM cérébrale	trouble des apprentissages	88.0	26.0	False	HP:0001263	True
+chu50_fr_38	9	Poids de naissance 2600g (5ème p.)				False		False
+chu50_fr_35	5	Les acquisitions motrices se sont faites normalement avec une marche acquise vers l'âge de 1 an.	Les acquisitions motrices se sont faites normalement avec une marche acquise vers l'âge de 1 an	0.0	95.0	True	HP:0001270	True
+chu50_fr_02	33	L’échocardiographie est déjà prévue et nous allons mettre en place les premiers rendez-vous de suivi pédiatrique.				False		False
+chu50_fr_05	1	consoeur, Je rencontre pour la premier fois M. Nate REDUIO, né le 03/2/1995, pour bilan étiologique				False		False
+chu50_fr_37	2	Anatole BONNET né le 12/05/2010 qui est suivi pour un tableau complexe de troubles du développement global avec une déficience intellectuelle et une ataxie cérébelleuse non progressive sans étiquette actuellement.	troubles du développement global	74.0	32.0	False	HP:0001263	True
+chu50_fr_19	4	Doreille, née le 25/07/1976,				False		False
+chu50_fr_40	13	Elle a présenté également des difficultés d'apprentissage, et notamment une dyslexie-dyscalculie nécessitant des aides à l'école.	dyslexie	76.0	8.0	False	HP:0010522	True
+chu50_fr_39	2	Le papa a eu d'une 1ère union 3 garçons a priori en bonne santé.				False		False
+chu50_fr_45	19	On note un philtrum court, des lèvres charnues, il n'y a pas d'anomalie des extrémités, le rachis est rectiligne.	le rachis est rectiligne	88.0	24.0	True	HP:0002751	True
+chu50_fr_33	0	A l'occasion d'un HDJ pour réalisation d'une IRM cérébrale et à la demande du Dr Aurélie VILLENEUVE, j'ai rencontré la jeune Camille DUBEAU née le 07/10/2019, qui est suivie pour une cassure de la courbe du périmètre crânien.	cassure de la courbe du périmètre crânien	183.0	41.0	False	HP:0000253	True
+chu50_fr_05	15	Auscultation pulmonaire sans particularité.	Auscultation pulmonaire sans particularité	0.0	42.0	True	HP:0030829	True
+chu50_fr_27	16	Elle mesure 1.51 m mais mesurait auparavant 1.55 m pour une envergure à 146 cm (E/T 0.94 si l'on tient compte de la taille antérieure), elle présente une déformation du poignet droit qu'elle n'avait précédemment remarqué, qui ne gêne pas la prono-suppination et qui n'est pas non plus douloureuse, qui pourrait correspondre à une déformation de Madelung à minima.	déformation de Madelung	330.0	23.0	False	HP:0003067	True
+chu50_fr_28	28	Sur le plan morphologique, elle présente des oreilles légèrement basses et en rotation postérieure, une ensellure nasale marquée, un ptosis gauche, un palais un peu creux.	palais un peu creux	151.0	19.0	False	HP:0000218	True
+chu50_fr_17	6	Elle est en bonne santé.				False		False
+chu50_fr_38	28	Prescription d'une CGH Array dans un premier temps Consultation de génétique dans un délai de 6 à 8 mois pour faire le point sur l’évolution de Valeria et discuter des premiers résultats.				False		False
+chu50_fr_44	32	Au total, troubles neurodeveloppemental global associé à des particularités comportementales et morphologiques. Je demande une analyse par CGH-array, une recherche de syndrome de l'X-fragile et une inclusion dans en génome.	troubles neurodeveloppemental global	10.0	36.0	False	HP:0001263	True

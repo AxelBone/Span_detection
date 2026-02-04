@@ -1,0 +1,51 @@
+{
+  "paths": {
+    "project_root": "/home/prollier/ext/Span_detection/",
+    "models_root": "/home/prollier/models/",
+    "data_root": "/home/prollier/output/for_span_detection_formatted/"
+  },
+
+  "model": {
+    "model_name": "{models_root}/qwen3-32b",
+    "device_map": "auto",
+    "dtype": "float16",
+    "local_files_only": true,
+    "trust_remote_code": true
+  },
+
+  "generation": {
+    "max_new_tokens": 64,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": 50,
+    "do_sample": false,
+    "repetition_penalty": 1.0
+  },
+
+  "io": {
+    "filename": "gold_sample.tsv",
+    "sep": "\t",
+    "encoding": "utf-8",
+    "sentence_col": "Sentence_en",
+    "out_dir": "results"
+  },
+
+  "runtime": {
+    "batch_size": 100,
+    "log_file": "run_local.log",
+    "log_level": "INFO",
+    "resume": true
+  },
+
+  "prompt": {
+    "template_paths": [
+      "prompts/small_models/span_detection.txt",
+      "prompts/small_models/span_detection_with_examples.txt",
+      "prompts/small_models/span_and_negation_detection_with_examples.txt",
+      "prompts/small_models/span_and_negation_detection.txt",
+      "prompts/small_models/negation_detection.txt",
+      "prompts/small_models/negation_detection_with_examples.txt"
+    ],
+    "sentence_var": "sentence"
+  }
+}

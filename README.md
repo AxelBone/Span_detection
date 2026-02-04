@@ -1,82 +1,126 @@
-# run_spans.py — Extraction de *spans* phénotypiques avec un LLM
+# Extraction de spans phénotypiques avec des LLMs
 
-Ce dépôt contient `run_spans.py`, un script qui :
-- charge un dataset de **phrases** (1 ligne = 1 phrase / document),
-- appelle un **modèle LLM** (local ou distant : ex. `epfl-llm/meditron-7b`, `Qwen-3-32B`, etc.),
-- produit un fichier de sortie avec les **spans prédits** (phénotypes) + un flag de **négation**,
-- **externalise toute la configuration** (modèle, hyperparamètres, chemins) dans un fichier JSON passé via `--config`.
+Ce dépôt contient des scripts pour **l’extraction automatique de spans phénotypiques** (et optionnellement la négation) à partir de phrases cliniques, en utilisant des **LLMs** :
 
----
-
-## 1) Pré-requis
-
-### Python & dépendances
-- Python 3.9+ recommandé
-- `torch`
-- `transformers`
-- `pandas`
-
-Installation typique :
-```bash
-pip install -U torch transformers pandas
-````
-
-> ⚠️ Pour les modèles volumineux, prévois une machine GPU et suffisamment de VRAM, ou utilise `device_map="auto"` avec accélération adaptée.
+- soit via un **appel local Python** (`transformers`, inférence dans le process),
+- soit via un **serveur Ollama** (appel HTTP),
+- avec une **configuration entièrement externalisée** en JSON,
+- et des sorties exploitables pour l’évaluation (format long TSV).
 
 ---
 
-## 2) Format attendu des données
+## 📁 Arborescence du projet
 
-Le script lit un fichier TSV/CSV (par défaut TSV) contenant une colonne de phrases (par défaut `Sentence_en`).
-
-Exemple minimal :
-
-| Sentence_en                                       |
-| ------------------------------------------------- |
-| "Shortly after birth, he developed tachypnea..."  |
-| "MR spectroscopy showed a region of increased..." |
-
-> Le nom de la colonne est configurable via `io.sentence_col`.
-
----
-
-## 3) Utilisation rapide
-
-### Lancer le script
-
-```bash
-python run_spans.py --config configs/run_spans.json
+```
+.
+├── README.md
+├── configs
+│ ├── configs-local.json # Config inférence locale (Transformers)
+│ ├── configs-ollama.json # Config inférence via Ollama
+│ └── obs # Anciennes configs / brouillons
+├── data
+│ ├── CHU_50_eng
+│ ├── CHU_50_fr
+│ ├── FR_simulatedCR_2025_02_14
+│ ├── ID68_span_6_clean.csv
+│ ├── gold_sample_N500.tsv
+│ └── gold_spans.tsv
+├── notebook
+│ ├── evaluate_neg.ipynb
+│ ├── evaluate_span_detection.ipynb
+│ └── evaluate_span_detection.py
+├── prompts
+│ ├── prompt.txt
+│ ├── small_models
+│ ├── span_prompt_with_examples.txt
+│ ├── span_prompt_with_examples_strict_version.txt
+│ └── span_prompt_without_examples_strict_version.txt
+└── scripts
+├── run_spans.py # Script principal (local ou Ollama selon config)
+├── neg.py
+├── sample_gold.py
+├── prepare_gold_standard_for_span_detection_and_negation_evaluation.py
+├── evaluate_time_for_run_spans.py
+├── evaluate_time_for_run_spans_ollama.py
+└── evaluate_time_for_run_spans_vLLM.py
 ```
 
-Le script :
+---
 
-1. charge la config JSON,
-2. charge le tokenizer + modèle (`AutoTokenizer`, `AutoModelForCausalLM`),
-3. génère une prédiction pour chaque phrase,
-4. écrit un fichier TSV dans `out_dir`.
+## 🎯 Fonctionnalités principales
+
+- Lecture d’un dataset **1 phrase par ligne**
+- Application de **plusieurs prompts** sur chaque phrase
+- Appel :
+  - soit d’un **modèle local** (`transformers`)
+  - soit d’un **modèle distant via Ollama**
+- Sortie au **format long** :
+  - 1 ligne = 1 span prédit
+  - conservation de la sortie brute du modèle
+- Gestion :
+  - des logs
+  - de la reprise sur checkpoint
+  - des temps d’inférence
 
 ---
 
-## 4) Configuration JSON
+## ⚙️ Pré-requis
 
-Toute la configuration est dans un fichier JSON.
+### Python
+- Python **3.9+** recommandé
 
-### Exemple (fourni)
+### Dépendances minimales
+```bash
+pip install torch transformers accelerate pandas
+```
 
-```json
+⚠️ Pour les modèles volumineux (Qwen 32B, etc.), un GPU avec suffisamment de VRAM est fortement recommandé.
+Le paramètre device_map="auto" est supporté.
+
+
+### 📄 Format des données en entrée
+
+Le script lit un fichier TSV / CSV contenant une colonne de phrases.
+
+Exemple minimal :
+Sentence_en
+Shortly after birth, he developed tachypnea...
+MR spectroscopy showed a region of increased...
+
+Le nom de la colonne est configurable via :
+
+"io": {
+  "sentence_col": "Sentence_en"
+}
+
+### ▶️ Utilisation
+Lancer une extraction
+
+`python scripts/run_spans.py --config configs/configs-local.json`
+
+Ou avec Ollama :
+
+`python scripts/run_spans.py --config configs/configs-ollama.json`
+
+### 🧩 Configuration JSON
+
+Toute la logique est pilotée par un fichier JSON.
+Exemple : inférence locale (configs/configs-local.json)
+
+```
 {
   "paths": {
-    "project_root": "/home/me/code/phenotype-project",
-    "models_root": "/mnt/big_disk/models",
-    "data_root": "/mnt/shared_data/chu50_en_v2"
+    "project_root": "/home/prollier/ext/Span_detection/",
+    "models_root": "/home/prollier/models/",
+    "data_root": "/home/prollier/output/for_span_detection_formatted/"
   },
 
   "model": {
-    "model_name": "meditron-7b",
+    "model_name": "{models_root}/qwen3-32b",
     "device_map": "auto",
     "dtype": "float16",
     "local_files_only": true,
-    "trust_remote_code": false
+    "trust_remote_code": true
   },
 
   "generation": {
@@ -89,103 +133,93 @@ Toute la configuration est dans un fichier JSON.
   },
 
   "io": {
-    "filename": "spans_dataset.tsv",
+    "filename": "gold_sample_N500.tsv",
     "sep": "\t",
     "encoding": "utf-8",
     "sentence_col": "Sentence_en",
-    "out_dir": "results",
-    "pred_col_prefix": "span_pred"
+    "out_dir": "results"
+  },
+
+  "runtime": {
+    "batch_size": 100,
+    "log_file": "run_local.log",
+    "log_level": "INFO",
+    "resume": true
+  },
+
+  "prompt": {
+    "template_paths": [
+      "prompts/small_models/span_detection.txt",
+      "prompts/small_models/span_detection_with_examples.txt"
+    ],
+    "sentence_var": "sentence"
   }
 }
 ```
 
-### Mécanisme des chemins
+Exemple : inférence Ollama (configs/configs-ollama.json)
 
-Le script supporte une section `paths` pour construire automatiquement des chemins :
+{
+  "ollama": {
+    "base_url": "https://compute-01.odh.local/ollama",
+    "model": "deepseek-r1:8b-llama-distill-q4_K_M",
+    "timeout_s": 120.0,
+    "verify_ssl": false
+  }
+}
 
-* `models_root` : racine des modèles locaux
-* `data_root` : racine des données
-* `project_root` : racine projet (utile pour `out_dir`)
+➡️ Cette config est combinée avec les sections communes (paths, io, prompt, etc.).
 
-Règles importantes :
+### 📤 Format des sorties
 
-* Si `model.model_name` n’est pas absolu et que `paths.models_root` existe, alors :
+Les résultats sont écrits dans :
 
-  * `model_name` devient `os.path.join(models_root, model_name)`
-* Si `io.filename` est fourni :
+results/spans_long_<model>.tsv
 
-  * `io.data_path` devient `os.path.join(data_root, filename)` (si relatif)
-* Si `io.out_dir` est relatif et `project_root` existe :
+Colonnes importantes
 
-  * `out_dir` devient `os.path.join(project_root, out_dir)`
+    model
+    prompt_name
+    prompt_index
+    span_index
+    span_text
+    spans_count
+    raw_output
+    latency_s
 
-> Remarque : si tu préfères, tu peux aussi fournir directement `io.data_path` (chemin complet) au lieu de `filename`.
+toutes les colonnes originales du dataset
 
----
+👉 Format long : une ligne par span (ou une ligne vide si aucun span).
+🧪 Évaluation
 
-## 5) Sorties générées
+Les notebooks et scripts d’évaluation sont disponibles dans :
 
-### Colonnes ajoutées
+notebook/
 
-* Une colonne de prédiction :
-  `span_pred_<model_suffix>`
+    evaluate_span_detection.ipynb
+    evaluate_neg.ipynb
 
-Où :
+Ils permettent de comparer les prédictions aux gold standards présents dans data/.
+🧠 Modèles compatibles
 
-* `model_suffix` = dernier segment de `model_name`, normalisé (minuscules, `-` → `_`)
+    LLaMA / derivatives
+    Meditron
+    Qwen (souvent trust_remote_code=true)
+    Tout modèle compatible AutoModelForCausalLM
 
-Exemple :
+🚀 Extensions possibles
 
-* modèle `.../meditron-7b` ⇒ colonne `span_pred_meditron_7b`
+    Quantisation 4-bit / 8-bit (bitsandbytes)
+    vLLM
+    batching multi-phrases
+    fallback automatique Ollama → local
+    parsing structuré JSON strict
 
-### Négation
+📌 Notes
 
-Le script ajoute aussi :
+    Aucun code n’est spécifique à une langue : EN / FR supportés
+    Les prompts sont entièrement externalisés
+    Le script est conçu pour des runs longs et reproductibles
 
-* `negation` : un booléen indiquant si un motif de négation a été détecté dans la phrase.
-
-> ⚠️ Note : la fonction `detect_negation` retire des motifs via regex mais retourne uniquement un booléen (`negation_found`). Si tu veux conserver le texte nettoyé + le flag, il faut adapter cette fonction et son appel.
-
-### Fichier de sortie
-
-Le fichier est écrit dans :
-
-* `io.out_dir/spans_<model_suffix>.tsv`
-
-Exemple :
-
-* `results/spans_meditron_7b.tsv`
-
----
-
-## 6) Prompting / comportement attendu du modèle
-
-Le prompt (dans `build_prompt`) :
-
-* définit une persona clinique,
-* donne des consignes d’extraction de spans phénotypiques (avec négation/adjectifs),
-* fournit plusieurs exemples “SENTENCE → Span: …”,
-* exige `None` en absence de span / incertitude.
-
-La génération extrait ensuite naïvement ce qui se trouve après `"Span:"`.
-
----
-
-## 7) Modèles compatibles
-
-Le script utilise :
-
-* `AutoTokenizer.from_pretrained`
-* `AutoModelForCausalLM.from_pretrained`
-
-Il fonctionne généralement avec :
-
-* modèles type LLaMA/Meditron,
-* Qwen (souvent besoin de `trust_remote_code=true` selon le modèle).
-
-Paramètres utiles :
-
-* `model.local_files_only=true` si modèles présents localement,
-* `model.trust_remote_code=true` pour certains repos HF,
-* `model.dtype` : `float16` / `bfloat16` / `float32`.
-
+👤 Auteur / Contact
+Projet interne — adapté pour l’expérimentation LLM en extraction clinique.
