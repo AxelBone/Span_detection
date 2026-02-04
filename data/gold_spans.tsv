@@ -1,4 +1,4 @@
-report_id	sentence_id	sentence	gold_span_text	start	length	gold_negated	hpo_id	annotation
+report_id	sentence_id	sentence	gold_span_text	start	length	gold_negated	hpo_id	gold_annotation
 chu50_en_01	0	Dear colleague, I met today in consultation your patient Mrs. Marie MADELAIEN, born on 18/08/1987, with her partner, for an etiological assessment following the evidence of short long bones during the current pregnancy.	short long bones	173.0	16.0	False	HP:0003026	True
 chu50_en_01	1	Family history: Pregnancy obtained through IVF, with sperm donation.						False
 chu50_en_01	2	Anonymous donor.						False

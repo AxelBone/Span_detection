@@ -1,4 +1,4 @@
-report_id	sentence_id	sentence	gold_span_text	start	length	gold_negated	hpo_id	annotation
+report_id	sentence_id	sentence	gold_span_text	start	length	gold_negated	hpo_id	gold_annotation
 chu50_fr_27	7	Mr et Mme GADBOIS me ramènent des radiographies de Pensée que je vais faire relire attentivement. Concernant les grands-parents, ils viennent pour continuer l'enquête familiale afin de d'essayer d'éclaircir la pathogénicité de ce variant ou non.				False		False
 chu50_fr_10	15	Il n'y a pas eu d'événement de santé très particulier en période néo-natale notamment pas de notion d'hypotonie.	en période néo-natale notamment pas de notion d'hypotonie	54.0	57.0	True	HP:0001319	True
 chu50_fr_46	5	Ils ont toutes eu des enfants qui iraient bien également.				False		False
