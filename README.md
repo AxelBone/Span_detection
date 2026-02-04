@@ -19,12 +19,8 @@ Ce dépôt contient des scripts pour **l’extraction automatique de spans phén
 │ ├── configs-ollama.json # Config inférence via Ollama
 │ └── obs # Anciennes configs / brouillons
 ├── data
-│ ├── CHU_50_eng
-│ ├── CHU_50_fr
-│ ├── FR_simulatedCR_2025_02_14
-│ ├── ID68_span_6_clean.csv
 │ ├── gold_sample_N500.tsv
-│ └── gold_spans.tsv
+│ └── gold_spans.tsv # Generated from CHU50
 ├── notebook
 │ ├── evaluate_neg.ipynb
 │ ├── evaluate_span_detection.ipynb
