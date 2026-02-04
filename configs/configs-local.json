@@ -26,8 +26,9 @@
     "filename": "gold_sample.tsv",
     "sep": "\t",
     "encoding": "utf-8",
-    "sentence_col": "Sentence_en",
-    "out_dir": "results"
+    "sentence_col": "sentence",
+    "out_dir": "results",
+    "gold_span_col" : "gold_span_text"
   },
 
   "runtime": {

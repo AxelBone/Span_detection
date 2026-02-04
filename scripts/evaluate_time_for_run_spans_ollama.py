@@ -46,6 +46,7 @@ class IOConfig:
     sentence_col: str = "Sentence_en"
     out_dir: str = "results"
     pred_col_prefix: str = "span_pred"
+    gold_span_col: str = "gold_span_text"   # <- ajouté
 
 
 @dataclass
@@ -53,12 +54,12 @@ class OllamaConfig:
     base_url: str = "https://compute-01.odh.local/ollama"
     model: str = "deepseek-r1:8b-llama-distill-q4_K_M"
     timeout_s: float = 120.0
-    verify_ssl: bool = False  # -k dans curl => verify=False
+    verify_ssl: bool = False
 
 
 @dataclass
 class RuntimeConfig:
-    batch_size: int = 100            # fréquence de sauvegarde
+    batch_size: int = 100
     log_file: str = "run.log"
     log_level: str = "INFO"
     resume: bool = True
@@ -66,9 +67,7 @@ class RuntimeConfig:
 
 @dataclass
 class PromptConfig:
-    # liste de fichiers de prompt, chacun avec un {sentence}
     template_paths: List[str] = None
-    # pour compat avec l'ancien JSON (un seul prompt)
     template_path: Optional[str] = None
     sentence_var: str = "sentence"
 
@@ -114,7 +113,7 @@ def load_config_from_json(path: str) -> GlobalConfig:
     model_raw = expand(raw.get("model", {}))
     gen_raw = expand(raw.get("generation", {}))
     io_raw = expand(raw.get("io", {}))
-    ollama_raw = expand(raw.get("ollama", raw.get("vllm", {})))  # compat ancien champ "vllm"
+    ollama_raw = expand(raw.get("ollama", raw.get("vllm", {})))
     runtime_raw = expand(raw.get("runtime", {}))
     prompt_raw = expand(raw.get("prompt", {}))
 
@@ -144,7 +143,6 @@ def load_config_from_json(path: str) -> GlobalConfig:
     runtime_cfg = _dict_to_dataclass(RuntimeConfig, runtime_raw)
     prompt_cfg = _dict_to_dataclass(PromptConfig, prompt_raw)
 
-    # compat : si template_paths n'est pas défini mais template_path oui
     if (not prompt_cfg.template_paths or len(prompt_cfg.template_paths) == 0) and prompt_cfg.template_path:
         prompt_cfg.template_paths = [prompt_cfg.template_path]
 
@@ -233,12 +231,12 @@ def load_prompt_template(path: str) -> str:
         return f.read()
 
 
-def render_prompt(template: str, sentence: str, var_name: str = "sentence") -> str:
+def render_prompt_with_vars(template: str, vars_dict: Dict[str, str]) -> str:
     try:
-        return template.format(**{var_name: sentence})
+        return template.format(**vars_dict)
     except KeyError as e:
         raise KeyError(
-            f"Variable manquante dans le template. Attendu: {{{var_name}}}. Erreur: {e}"
+            f"Variable manquante dans le template: {e}. Vars dispo: {list(vars_dict.keys())}"
         ) from e
 
 
@@ -247,9 +245,7 @@ def render_prompt(template: str, sentence: str, var_name: str = "sentence") -> s
 # =========================
 
 def generate_with_ollama(
-    sentence: str,
-    prompt_template: str,
-    prompt_var: str,
+    prompt: str,
     ollama_cfg: OllamaConfig,
     gen_cfg: GenerationConfig,
     session: Optional[requests.Session] = None,
@@ -257,8 +253,6 @@ def generate_with_ollama(
     """
     Appelle l'API Ollama /api/generate pour un prompt donné.
     """
-    prompt = render_prompt(prompt_template, sentence, var_name=prompt_var)
-
     url = f"{ollama_cfg.base_url}/api/generate"
     headers = {"Content-Type": "application/json"}
 
@@ -284,74 +278,68 @@ def generate_with_ollama(
     resp.raise_for_status()
     data = resp.json()
 
-    # pour Ollama, la réponse est généralement dans le champ "response"
     text = data.get("response", "") or ""
     text = text.strip()
-
     return text, elapsed_s
 
 
 # =========================
-# 6bis. Parsing des spans
+# 6bis. Parsing sorties
 # =========================
 
 def parse_spans_from_prediction(pred_text: str) -> List[str]:
-    """
-    Parse la sortie du modèle (prévue en JSON) et renvoie une liste de chaînes (spans).
-    Si le parsing JSON échoue, on considère éventuellement la sortie comme un span unique.
-    """
     pred_text = (pred_text or "").strip()
     if not pred_text:
         return []
-
     try:
         data = json.loads(pred_text)
     except json.JSONDecodeError:
-        # Fallback: si ce n'est pas du JSON mais qu'on a du texte, on le considère comme un seul span
         return [pred_text]
 
     spans_raw = data.get("spans", [])
     spans: List[str] = []
-
-    # "spans" peut être une liste de dicts {"span": "..."} ou directement une liste de chaînes
     for item in spans_raw:
         if isinstance(item, str):
             spans.append(item)
         elif isinstance(item, dict) and isinstance(item.get("span"), str):
             spans.append(item["span"])
-
     return spans
+
+
+def parse_negation_from_prediction(pred_text: str) -> Optional[bool]:
+    """
+    Attendu: {"negation": true|false}
+    Retourne None si parsing impossible.
+    """
+    pred_text = (pred_text or "").strip()
+    if not pred_text:
+        return None
+    try:
+        data = json.loads(pred_text)
+    except json.JSONDecodeError:
+        return None
+    val = data.get("negation", None)
+    return val if isinstance(val, bool) else None
 
 
 # =========================
 # 7. Ecriture batch append
 # =========================
 
-def append_batch_tsv(
-    out_path: str,
-    df_batch: pd.DataFrame,
-    sep: str,
-    write_header_if_new: bool,
-) -> None:
+def append_batch_tsv(out_path: str, df_batch: pd.DataFrame, sep: str, write_header_if_new: bool) -> None:
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    mode = "a"
     header = write_header_if_new and (not os.path.exists(out_path) or os.path.getsize(out_path) == 0)
-    df_batch.to_csv(out_path, sep=sep, index=False, mode=mode, header=header)
+    df_batch.to_csv(out_path, sep=sep, index=False, mode="a", header=header)
 
 
 # =========================
-# 8. Main avec logs + reprise (format long)
+# 8. Main (format long)
 # =========================
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, required=True, help="Chemin du fichier JSON de config.")
-    parser.add_argument(
-        "--model",
-        type=str,
-        default=None,
-        help="Nom du modèle Ollama à utiliser (écrase ollama.model dans la config).",
-    )
+    parser.add_argument("--model", type=str, default=None, help="Nom du modèle Ollama (écrase ollama.model).")
     args = parser.parse_args()
 
     cfg = load_config_from_json(args.config)
@@ -360,9 +348,11 @@ def main():
     ollama_cfg = cfg.ollama
     rt_cfg = cfg.runtime
 
-    # override du modèle via CLI si fourni
     if args.model is not None:
         ollama_cfg.model = args.model
+
+    # prompts negation-only (basés sur basename)
+    NEGATION_ONLY_PROMPTS = {"negation_detection", "negation_detection_with_examples"}
 
     model_suffix = ollama_cfg.model.replace(":", "_").replace("-", "_").replace(" ", "_").lower()
     os.makedirs(io_cfg.out_dir, exist_ok=True)
@@ -376,28 +366,32 @@ def main():
     logger.info("Config runtime: %s", asdict(rt_cfg))
     logger.info("Config prompt: %s", asdict(cfg.prompt))
 
-    # --- Charger tous les templates de prompt ---
-    prompt_var = cfg.prompt.sentence_var
+    # --- prompts ---
+    sentence_var = cfg.prompt.sentence_var
     prompt_templates: List[str] = []
     prompt_names: List[str] = []
 
     for p in cfg.prompt.template_paths:
-        tmpl = load_prompt_template(p)
-        prompt_templates.append(tmpl)
-        # nom court pour les colonnes (basename sans extension)
-        base = os.path.splitext(os.path.basename(p))[0]
-        prompt_names.append(base)
+        prompt_templates.append(load_prompt_template(p))
+        prompt_names.append(os.path.splitext(os.path.basename(p))[0])
 
     logger.info("Loaded %d prompt templates: %s", len(prompt_templates), cfg.prompt.template_paths)
 
     df = load_dataset(io_cfg.data_path, sep=io_cfg.sep, encoding=io_cfg.encoding)
 
     if io_cfg.sentence_col not in df.columns:
-        raise ValueError(
-            f"Colonne '{io_cfg.sentence_col}' introuvable. Colonnes dispo : {list(df.columns)}"
-        )
+        raise ValueError(f"Colonne '{io_cfg.sentence_col}' introuvable. Colonnes dispo : {list(df.columns)}")
 
-    # Fichier de sortie en format LONG
+    # colonne gold span (pour prompts negation-only)
+    gold_span_col = io_cfg.gold_span_col
+
+    if any(name in NEGATION_ONLY_PROMPTS for name in prompt_names):
+        if gold_span_col not in df.columns:
+            raise ValueError(
+                f"Prompts negation-only détectés {NEGATION_ONLY_PROMPTS} "
+                f"mais aucune colonne gold span trouvée ('{io_cfg.gold_span_col}')."
+            )
+
     out_path = os.path.join(io_cfg.out_dir, f"spans_long_{model_suffix}.tsv")
     ckpt = checkpoint_path(io_cfg.out_dir, model_suffix)
 
@@ -405,18 +399,12 @@ def main():
     start_row = load_checkpoint(ckpt) if rt_cfg.resume else 0
     start_row = max(0, min(start_row, total))
 
-    if start_row > 0:
-        logger.info("Reprise activée: start_row=%d / total=%d (checkpoint=%s)", start_row, total, ckpt)
-    else:
-        logger.info("Départ: start_row=0 / total=%d", total)
+    logger.info("Start_row=%d / total=%d (resume=%s)", start_row, total, rt_cfg.resume)
 
     batch_size = max(1, int(rt_cfg.batch_size))
-
     processed = start_row
     global_start = time.perf_counter()
     latencies_all: List[float] = []
-
-    # pour savoir si on doit écrire l'entête
     write_header_if_new = (start_row == 0)
 
     with requests.Session() as session:
@@ -427,29 +415,40 @@ def main():
             t_batch0 = time.perf_counter()
             df_batch = df.iloc[batch_start_idx:batch_end_idx].copy()
 
-            # pré-allocation : pour chaque prompt, une liste de prédictions & de temps
-            batch_preds: List[List[str]] = [[] for _ in prompt_templates]
+            sentences = df_batch[io_cfg.sentence_col].tolist()
+            gold_spans_batch = df_batch[gold_span_col].tolist() if gold_span_col in df_batch.columns else None
+
+            batch_outputs: List[List[str]] = [[] for _ in prompt_templates]
             batch_times: List[List[float]] = [[] for _ in prompt_templates]
 
-            sentences = df_batch[io_cfg.sentence_col].tolist()
-
-            for row_idx, sent in enumerate(sentences, start=batch_start_idx):
-                s = str(sent)
+            for local_i, sent in enumerate(sentences):
+                sentence_value = str(sent)
+                span_value = ""
+                if gold_spans_batch is not None:
+                    span_value = "" if pd.isna(gold_spans_batch[local_i]) else str(gold_spans_batch[local_i])
 
                 for p_idx, tmpl in enumerate(prompt_templates):
+                    prompt_name = prompt_names[p_idx]
+
+                    if prompt_name in NEGATION_ONLY_PROMPTS:
+                        vars_dict = {"span": span_value}
+                    else:
+                        vars_dict = {sentence_var: sentence_value}
+
+                    prompt = render_prompt_with_vars(tmpl, vars_dict)
+
                     pred_text, elapsed_s = generate_with_ollama(
-                        sentence=s,
-                        prompt_template=tmpl,
-                        prompt_var=prompt_var,
+                        prompt=prompt,
                         ollama_cfg=ollama_cfg,
                         gen_cfg=gen_cfg,
                         session=session,
                     )
-                    batch_preds[p_idx].append(pred_text)
+
+                    batch_outputs[p_idx].append(pred_text)
                     batch_times[p_idx].append(float(elapsed_s))
                     latencies_all.append(float(elapsed_s))
 
-                done = row_idx + 1
+                done = batch_start_idx + local_i + 1
                 remaining = total - done
                 mean_s = (sum(latencies_all) / len(latencies_all)) if latencies_all else 0.0
                 eta_s = remaining * mean_s
@@ -460,22 +459,18 @@ def main():
                         done, total, remaining, mean_s, eta_s
                     )
 
-            # --- Construction du batch en format LONG ---
+            # --- format LONG ---
             long_rows: List[Dict[str, Any]] = []
 
-            # local_idx : index dans le df_batch / sentences
-            for local_idx, sent in enumerate(sentences):
+            for local_idx in range(len(df_batch)):
                 base_row = df_batch.iloc[local_idx].to_dict()
 
                 for p_idx, prompt_name in enumerate(prompt_names):
-                    pred_text = batch_preds[p_idx][local_idx]
+                    pred_text = batch_outputs[p_idx][local_idx]
                     latency = batch_times[p_idx][local_idx]
 
-                    spans = parse_spans_from_prediction(pred_text)
-                    spans_count = len(spans)
-
-                    if spans_count == 0:
-                        # On garde une ligne même s'il n'y a pas de span
+                    if prompt_name in NEGATION_ONLY_PROMPTS:
+                        neg_val = parse_negation_from_prediction(pred_text)
                         long_rows.append({
                             **base_row,
                             "model": ollama_cfg.model,
@@ -484,33 +479,48 @@ def main():
                             "span_index": -1,
                             "span_text": "",
                             "spans_count": 0,
+                            "negation_pred": neg_val,
                             "raw_output": pred_text,
                             "latency_s": latency,
                         })
                     else:
-                        for s_idx, span_text in enumerate(spans):
+                        spans = parse_spans_from_prediction(pred_text)
+                        spans_count = len(spans)
+
+                        if spans_count == 0:
                             long_rows.append({
                                 **base_row,
                                 "model": ollama_cfg.model,
                                 "prompt_name": prompt_name,
                                 "prompt_index": p_idx,
-                                "span_index": s_idx,
-                                "span_text": span_text,
-                                "spans_count": spans_count,
+                                "span_index": -1,
+                                "span_text": "",
+                                "spans_count": 0,
                                 "raw_output": pred_text,
                                 "latency_s": latency,
                             })
+                        else:
+                            for s_idx, span_text in enumerate(spans):
+                                long_rows.append({
+                                    **base_row,
+                                    "model": ollama_cfg.model,
+                                    "prompt_name": prompt_name,
+                                    "prompt_index": p_idx,
+                                    "span_index": s_idx,
+                                    "span_text": span_text,
+                                    "spans_count": spans_count,
+                                    "raw_output": pred_text,
+                                    "latency_s": latency,
+                                })
 
             df_long_batch = pd.DataFrame(long_rows)
-
             append_batch_tsv(out_path, df_long_batch, io_cfg.sep, write_header_if_new=write_header_if_new)
-            write_header_if_new = False  # après la première écriture
+            write_header_if_new = False
 
             processed = batch_end_idx
             save_checkpoint(ckpt, processed)
 
             t_batch = time.perf_counter() - t_batch0
-            # moyenne de toutes les requêtes dans ce batch (optionnel)
             flat_times = [t for sub in batch_times for t in sub]
             batch_mean = (sum(flat_times) / len(flat_times)) if flat_times else 0.0
 

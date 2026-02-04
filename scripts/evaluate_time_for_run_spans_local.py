@@ -12,7 +12,6 @@ from typing import Dict, Any, Tuple, Optional, List
 
 import pandas as pd
 
-# Dépendances modèle local
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -33,12 +32,11 @@ class GenerationConfig:
 
 @dataclass
 class ModelConfig:
-    # ici: chemin local vers le modèle (HF format) ou nom HF si tu acceptes le téléchargement
-    model_name: str = "models/qwen3-32b"   # exemple: dossier local
+    model_name: str = "models/qwen3-32b"
     device_map: str = "auto"
-    dtype: str = "float16"                # "float16" / "bfloat16" / "float32"
-    local_files_only: bool = True         # True => pas de téléchargement
-    trust_remote_code: bool = False       # True si modèle en a besoin (Qwen, etc.)
+    dtype: str = "float16"
+    local_files_only: bool = True
+    trust_remote_code: bool = False
 
 
 @dataclass
@@ -48,6 +46,8 @@ class IOConfig:
     encoding: str = "utf-8"
     sentence_col: str = "Sentence_en"
     out_dir: str = "results"
+    # colonne span gold (pour negation-only prompts)
+    gold_span_col: str = "gold_span_text"
 
 
 @dataclass
@@ -107,7 +107,6 @@ def load_config_from_json(path: str) -> GlobalConfig:
     runtime_raw = expand(raw.get("runtime", {}))
     prompt_raw = expand(raw.get("prompt", {}))
 
-    # compat : si template_paths vide mais template_path rempli
     prompt_cfg = _dict_to_dataclass(PromptConfig, prompt_raw)
     if (not prompt_cfg.template_paths or len(prompt_cfg.template_paths) == 0) and prompt_cfg.template_path:
         prompt_cfg.template_paths = [prompt_cfg.template_path]
@@ -191,13 +190,11 @@ def load_prompt_template(path: str) -> str:
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
-def render_prompt(template: str, sentence: str, var_name: str = "sentence") -> str:
+def render_prompt_with_vars(template: str, vars_dict: Dict[str, str]) -> str:
     try:
-        return template.format(**{var_name: sentence})
+        return template.format(**vars_dict)
     except KeyError as e:
-        raise KeyError(
-            f"Variable manquante dans le template. Attendu: {{{var_name}}}. Erreur: {e}"
-        ) from e
+        raise KeyError(f"Variable manquante dans le template: {e}. Vars dispo: {list(vars_dict.keys())}") from e
 
 
 # =========================
@@ -212,23 +209,17 @@ def _resolve_dtype(dtype_str: str):
         return torch.bfloat16
     if s in ("float32", "fp32"):
         return torch.float32
-    # fallback prudent
     return torch.float16
 
 @torch.inference_mode()
 def generate_with_local_model(
-    sentence: str,
-    prompt_template: str,
-    prompt_var: str,
+    prompt: str,
     tokenizer: AutoTokenizer,
     model: AutoModelForCausalLM,
     gen_cfg: GenerationConfig,
 ) -> Tuple[str, float]:
-    prompt = render_prompt(prompt_template, sentence, var_name=prompt_var)
-
     inputs = tokenizer(prompt, return_tensors="pt")
-    # envoyer sur le bon device (si device_map=auto, le modèle est sharded => on laisse HF gérer;
-    # mais les inputs doivent au moins être sur un device "valide". On met sur le premier param device.)
+
     try:
         first_param = next(model.parameters())
         device = first_param.device
@@ -237,7 +228,6 @@ def generate_with_local_model(
         pass
 
     t0 = time.perf_counter()
-
     out_ids = model.generate(
         **inputs,
         max_new_tokens=gen_cfg.max_new_tokens,
@@ -246,13 +236,10 @@ def generate_with_local_model(
         top_p=gen_cfg.top_p,
         top_k=gen_cfg.top_k,
         repetition_penalty=gen_cfg.repetition_penalty,
-        # important: évite warning si pas de pad_token
         pad_token_id=tokenizer.eos_token_id if tokenizer.eos_token_id is not None else None,
     )
-
     elapsed_s = time.perf_counter() - t0
 
-    # On ne veut que la complétion (sans le prompt) si possible
     gen_part = out_ids[0]
     if "input_ids" in inputs:
         prompt_len = inputs["input_ids"].shape[-1]
@@ -263,7 +250,7 @@ def generate_with_local_model(
 
 
 # =========================
-# 6bis. Parsing des spans
+# 6bis. Parsing sorties
 # =========================
 
 def parse_spans_from_prediction(pred_text: str) -> List[str]:
@@ -283,6 +270,23 @@ def parse_spans_from_prediction(pred_text: str) -> List[str]:
         elif isinstance(item, dict) and isinstance(item.get("span"), str):
             spans.append(item["span"])
     return spans
+
+def parse_negation_from_prediction(pred_text: str) -> Optional[bool]:
+    """
+    Attendu: {"negation": true|false}
+    Retourne None si parsing impossible.
+    """
+    pred_text = (pred_text or "").strip()
+    if not pred_text:
+        return None
+    try:
+        data = json.loads(pred_text)
+    except json.JSONDecodeError:
+        return None
+    val = data.get("negation", None)
+    if isinstance(val, bool):
+        return val
+    return None
 
 
 # =========================
@@ -327,8 +331,11 @@ def main():
     logger.info("Config runtime: %s", asdict(rt_cfg))
     logger.info("Config prompt: %s", asdict(cfg.prompt))
 
+    # prompts negation-only (basés sur le basename du fichier)
+    NEGATION_ONLY_PROMPTS = {"negation_detection", "negation_detection_with_examples"}
+
     # --- charger prompts ---
-    prompt_var = cfg.prompt.sentence_var
+    sentence_var = cfg.prompt.sentence_var
     prompt_templates: List[str] = []
     prompt_names: List[str] = []
 
@@ -338,8 +345,20 @@ def main():
 
     # --- charger dataset ---
     df = load_dataset(io_cfg.data_path, sep=io_cfg.sep, encoding=io_cfg.encoding)
+
     if io_cfg.sentence_col not in df.columns:
         raise ValueError(f"Colonne '{io_cfg.sentence_col}' introuvable. Dispo: {list(df.columns)}")
+
+    # colonne gold span (pour prompts negation-only)
+    gold_span_col = io_cfg.gold_span_col
+
+    # si on a des prompts negation-only, on exige une colonne gold span
+    if any(name in NEGATION_ONLY_PROMPTS for name in prompt_names):
+        if gold_span_col not in df.columns:
+            raise ValueError(
+                f"Prompts negation-only détectés {NEGATION_ONLY_PROMPTS} "
+                f"mais aucune colonne gold span trouvée ('{io_cfg.gold_span_col}')."
+            )
 
     # --- charger modèle local ---
     dtype = _resolve_dtype(model_cfg.dtype)
@@ -351,8 +370,6 @@ def main():
         trust_remote_code=model_cfg.trust_remote_code,
         use_fast=True,
     )
-
-    # pad_token (utile pour generate)
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -361,7 +378,7 @@ def main():
         local_files_only=model_cfg.local_files_only,
         trust_remote_code=model_cfg.trust_remote_code,
         torch_dtype=dtype,
-        device_map=model_cfg.device_map,   # "auto" => accélère + shard multi-gpu si possible
+        device_map=model_cfg.device_map,
     )
     model.eval()
 
@@ -387,28 +404,47 @@ def main():
 
         t_batch0 = time.perf_counter()
         df_batch = df.iloc[batch_start_idx:batch_end_idx].copy()
+
         sentences = df_batch[io_cfg.sentence_col].tolist()
 
-        batch_preds: List[List[str]] = [[] for _ in prompt_templates]
+        # IMPORTANT : on récupère les gold spans du batch (si dispo)
+        gold_spans_batch = None
+        if gold_span_col in df_batch.columns:
+            gold_spans_batch = df_batch[gold_span_col].tolist()
+
+        # pré-allocation
+        batch_outputs: List[List[str]] = [[] for _ in prompt_templates]
         batch_times: List[List[float]] = [[] for _ in prompt_templates]
 
-        for row_idx, sent in enumerate(sentences, start=batch_start_idx):
-            s = str(sent)
+        for local_i, sent in enumerate(sentences):
+            sentence_value = str(sent)
+            span_value = ""
+            if gold_spans_batch is not None:
+                span_value = "" if pd.isna(gold_spans_batch[local_i]) else str(gold_spans_batch[local_i])
 
             for p_idx, tmpl in enumerate(prompt_templates):
+                prompt_name = prompt_names[p_idx]
+
+                # choisir le bon input selon prompt
+                if prompt_name in NEGATION_ONLY_PROMPTS:
+                    vars_dict = {"span": span_value}
+                else:
+                    vars_dict = {sentence_var: sentence_value}
+
+                prompt = render_prompt_with_vars(tmpl, vars_dict)
+
                 pred_text, elapsed_s = generate_with_local_model(
-                    sentence=s,
-                    prompt_template=tmpl,
-                    prompt_var=prompt_var,
+                    prompt=prompt,
                     tokenizer=tokenizer,
                     model=model,
                     gen_cfg=gen_cfg,
                 )
-                batch_preds[p_idx].append(pred_text)
+
+                batch_outputs[p_idx].append(pred_text)
                 batch_times[p_idx].append(float(elapsed_s))
                 latencies_all.append(float(elapsed_s))
 
-            done = row_idx + 1
+            done = batch_start_idx + local_i + 1
             remaining = total - done
             mean_s = (sum(latencies_all) / len(latencies_all)) if latencies_all else 0.0
             eta_s = remaining * mean_s
@@ -421,40 +457,63 @@ def main():
 
         # --- format LONG ---
         long_rows: List[Dict[str, Any]] = []
-        for local_idx, sent in enumerate(sentences):
+
+        for local_idx in range(len(df_batch)):
             base_row = df_batch.iloc[local_idx].to_dict()
 
             for p_idx, prompt_name in enumerate(prompt_names):
-                pred_text = batch_preds[p_idx][local_idx]
+                pred_text = batch_outputs[p_idx][local_idx]
                 latency = batch_times[p_idx][local_idx]
-                spans = parse_spans_from_prediction(pred_text)
-                spans_count = len(spans)
 
-                if spans_count == 0:
+                if prompt_name in NEGATION_ONLY_PROMPTS:
+                    # sortie attendue: {"negation": true|false}
+                    neg_val = parse_negation_from_prediction(pred_text)
+
                     long_rows.append({
                         **base_row,
                         "model": model_cfg.model_name,
                         "prompt_name": prompt_name,
                         "prompt_index": p_idx,
+
+                        # champs spans (pas pertinents ici)
                         "span_index": -1,
                         "span_text": "",
                         "spans_count": 0,
+
+                        # champs negation-only
+                        "negation_pred": neg_val,
                         "raw_output": pred_text,
                         "latency_s": latency,
                     })
                 else:
-                    for s_idx, span_text in enumerate(spans):
+                    spans = parse_spans_from_prediction(pred_text)
+                    spans_count = len(spans)
+
+                    if spans_count == 0:
                         long_rows.append({
                             **base_row,
                             "model": model_cfg.model_name,
                             "prompt_name": prompt_name,
                             "prompt_index": p_idx,
-                            "span_index": s_idx,
-                            "span_text": span_text,
-                            "spans_count": spans_count,
+                            "span_index": -1,
+                            "span_text": "",
+                            "spans_count": 0,
                             "raw_output": pred_text,
                             "latency_s": latency,
                         })
+                    else:
+                        for s_idx, span_text in enumerate(spans):
+                            long_rows.append({
+                                **base_row,
+                                "model": model_cfg.model_name,
+                                "prompt_name": prompt_name,
+                                "prompt_index": p_idx,
+                                "span_index": s_idx,
+                                "span_text": span_text,
+                                "spans_count": spans_count,
+                                "raw_output": pred_text,
+                                "latency_s": latency,
+                            })
 
         df_long_batch = pd.DataFrame(long_rows)
         append_batch_tsv(out_path, df_long_batch, io_cfg.sep, write_header_if_new=write_header_if_new)

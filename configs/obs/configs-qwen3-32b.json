@@ -23,20 +23,18 @@
   },
 
   "io": {
-    "filename": "gold_sample.tsv",
-    "sep": "\t",
+    "filename": "translated_chunked_reports_chu50_span_format.csv",
+    "sep": ",",
     "encoding": "utf-8",
-    "sentence_col": "sentence",
+    "sentence_col": "Sentence_en",
     "out_dir": "results",
-    "pred_col_prefix": "span_pred",
-    "gold_span_col" : "gold_span_text"
+    "pred_col_prefix": "span_pred"
   },
 
-  "ollama": {
-    "base_url": "https://compute-01.odh.local/ollama",
-    "model": "deepseek-r1:8b-llama-distill-q4_K_M",
-    "timeout_s": 120.0,
-    "verify_ssl": false
+  "vllm": {
+    "base_url": "http://lx181:9502/v1",
+    "model": "qwen3-32b",
+    "timeout_s": 120.0
   },
 
   "runtime": {
@@ -47,14 +45,7 @@
   },
 
   "prompt": {
-    "template_paths": [
-      "prompts/small_models/span_detection.txt",
-      "prompts/small_models/span_detection_with_examples.txt",
-      "prompts/small_models/span_and_negation_detection_with_examples.txt",
-      "prompts/small_models/span_and_negation_detection.txt",
-      "prompts/small_models/negation_detection.txt",
-      "prompts/small_models/negation_detection_with_examples.txt"
-    ],
+    "template_path": "prompts/span_prompt.txt",
     "sentence_var": "sentence"
   }
 }

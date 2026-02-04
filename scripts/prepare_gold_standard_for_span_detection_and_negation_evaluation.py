@@ -173,7 +173,7 @@ def process_one_report(
                     "length": length,
                     "gold_negated": gold_negated,
                     "hpo_id": hpo_id,
-                    "annotation": True,   # il y a une annotation sur cette phrase
+                    "gold_annotation": True,   # il y a une annotation sur cette phrase
                 })
 
     return rows
